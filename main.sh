@@ -210,13 +210,14 @@ crontab() {
 }
 
 docker() {
+	# Install docker
 	echo "Y\n" | /usr/bin/apt install docker.io >>/dev/null 2>&1
-	mkdir /www/docker -p
 
 	# Project files info
 	read -p "cloud service:" cloudService
 	read -p "cloud path:" cloudPath
 	read -p "local path:" localPath
+	mkdir ${localPath} -p >>/dev/null 2>&1
 
 	dockerProject() {
 		# Choose project
