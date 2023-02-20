@@ -21,5 +21,6 @@ wget -O ~/.config/nvim/init.vim https://github.com/xsnaruto/something/raw/main/c
 
 # Load PlugIns
 echo "Plz type :PlugInstall to load Plugins"
+/usr/bin/nvim
 echo "finished, type <enter> continue"
 read none
