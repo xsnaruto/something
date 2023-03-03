@@ -19,8 +19,9 @@ map Q :q<CR>
 
 
 call plug#begin('~/.config/nvim/plugged') 
-"Plug 'neoclide/coc.nvim'
 Plug 'vim-airline/vim-airline'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'neoclide/coc.nvim'
 "Plug 'mhinz/vim-startify'
 "Plug 'glepnir/dashboard-nvim'
 "Plug 'glepnir/spaceline.vim'

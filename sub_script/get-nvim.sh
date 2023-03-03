@@ -2,6 +2,11 @@
 echo "Start install neovim"
 sleep 1s
 
+# 安装最新 NeoVim
+apt install software-properties-common -y >>/dev/null 2>&1
+add-apt-repository ppa:neovim-ppa/stable -y >>/dev/null 2>&1
+apt update && apt install neovim -y >>/dev/null 2>&1
+
 # Clean may exist junk file
 rm -rf ~/.config/nvim >>/dev/null 2>&1
 # Create neovim config path
