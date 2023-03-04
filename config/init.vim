@@ -88,7 +88,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
- Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
 Plug 'Yggdroot/indentLine'
@@ -105,7 +105,6 @@ let g:coc_global_extensions = [
 	\ 'coc-gitignore',
 	\ 'coc-html',
 	\ 'coc-json',
-	\ 'coc-prettier',
 	\ 'coc-syntax',
 	\ 'coc-translator',
 	\ 'coc-tsserver',
