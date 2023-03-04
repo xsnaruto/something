@@ -25,7 +25,5 @@ wget -O ~/.config/nvim/colors/molokai.vim https://raw.githubusercontent.com/toma
 wget -O ~/.config/nvim/init.vim https://github.com/xsnaruto/something/raw/main/config/init.vim >>/dev/null 2>&1
 
 # Load PlugIns
-echo "Plz type :PlugInstall to load Plugins"
-/usr/bin/nvim
 echo "finished, type <enter> continue"
 read none
