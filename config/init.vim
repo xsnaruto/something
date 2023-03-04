@@ -83,6 +83,14 @@ noremap tl :+tabnext<CR>
 "======================================
 "           Plugins manage
 "======================================
+" 检测 Vim-Plug 是否安装
+if empty(glob('~/.config/nvim/autoload/plug.vim')) 
+  :exe '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+              \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  au VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" 插件管理
 call plug#begin('~/.config/nvim/plugged')
 "Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'vim-airline/vim-airline'
