@@ -25,8 +25,8 @@ syntax on
 set ignorecase
 
 " 设置 <TAB> 默认空 4 格
-set ts=4
-"set tabstop=4
+set tabstop=4
+set shiftwidth=4
 
 " 行号配置
 set number
