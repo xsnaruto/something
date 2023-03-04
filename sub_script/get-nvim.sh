@@ -12,6 +12,7 @@ npm install -g n && n lts >>/dev/null 2>&1
 
 # Clean may exist junk file
 rm -rf ~/.config/nvim >>/dev/null 2>&1
+rm -rf ~/.config/coc >>/dev/null 2>&1
 # Create neovim config path
 mkdir ~/.config/nvim -p >>/dev/null 2>&1
 mkdir ~/.config/nvim/plugged >>/dev/null 2>&1
