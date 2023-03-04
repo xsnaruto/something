@@ -21,6 +21,9 @@ syntax enable
 " 忽略大小写
 set ignorecase
 
+" 设置 <TAB> 默认空 4 格
+set ts=4
+
 " 行号配置
 set number
 set norelativenumber
@@ -37,8 +40,8 @@ let g:rehash256 = 1
 "======================================
 "           Hotkey settings
 "======================================
-" map space as <SPACE>
-let mapspace=" "
+" map space as <LEADER>
+let mapleader=" "
 " Fast open init.vim
 noremap init :e ~/.config/nvim/init.vim<CR>
 " Reload init.vim
@@ -49,12 +52,13 @@ map J 5j
 " Fast Save & Quit 
 map W :w<CR>
 map Q :q<CR>
+map FQ :q!<CR>
 " Save to another path
 noremap S :w 
 " Copy to system clipboard
 vnoremap Y "+y
 " Disable search hightlight
-noremap <SPACE>><CR> :nohlsearch<CR>
+noremap <LEADER><CR> :nohlsearch<CR>
 " Fast call full find and replace
 noremap sg :%s//g<left><left>
 
@@ -77,19 +81,12 @@ noremap tl :+tabnext<CR>
 "======================================
 "           Plugins manage
 "======================================
-" 判断插件管理器是否存在，并执行后续动作
-if empty(glob('~/.config/nvim/autoload/plug.vim')) 
-  :exe '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-              \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  au VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.config/nvim/plugged')
 "Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
 call plug#end()
@@ -112,10 +109,10 @@ let g:coc_global_extensions = [
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
 " 使用 TAB 取用补全
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#pum#next(1) :
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
 
 "======================================
 "           NerdTree manage
