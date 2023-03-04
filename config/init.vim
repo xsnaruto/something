@@ -15,6 +15,9 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
+" 使用竖线来更改 TAB 制表符锁进
+set list lcs=tab:\┆\ 
+
 " 代码语法检测
 syntax on
 
@@ -100,7 +103,7 @@ Plug 'ervandew/supertab'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 call plug#end()
 "
 "======================================
@@ -121,7 +124,7 @@ let g:coc_global_extensions = [
 	\ 'coc-tsserver',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
-" 补全提示方向
+" 补全提示切换方向
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "======================================
@@ -133,7 +136,6 @@ map fs :NERDTreeToggle<CR>
 "           Other settings
 "======================================
 " 对齐标准线和可视化缩进
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
+" let g:indentLine_defaultGroup = 'SpecialKey'
 " Prettier 快捷操作
 noremap <C-F> :Prettier<CR>
