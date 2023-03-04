@@ -15,14 +15,15 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
-" Vim build-in 代码高亮
-syntax enable
+" 代码语法检测
+syntax on
 
 " 忽略大小写
 set ignorecase
 
 " 设置 <TAB> 默认空 4 格
 set ts=4
+set tabstop=4
 
 " 行号配置
 set number
@@ -33,7 +34,8 @@ set scrolloff=5
 
 " 配色设置
 set background=dark
-colorscheme molokai
+set t_Co=256
+colo molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
 
@@ -85,10 +87,11 @@ call plug#begin('~/.config/nvim/plugged')
 "Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 "
 "======================================
@@ -113,8 +116,19 @@ let g:coc_global_extensions = [
 "       \ coc#pum#visible() ? coc#pum#next(1) :
 "       \ CheckBackspace() ? "\<Tab>" :
 "       \ coc#refresh()
+" coc-prettier 相关设置
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+noremap <C-F> :Prettier<CR>
 
 "======================================
 "           NerdTree manage
 "======================================
 map fs :NERDTreeToggle<CR>
+"
+"======================================
+"           NerdTree manage
+"======================================
+" 对齐标准线和可视化缩进
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+
