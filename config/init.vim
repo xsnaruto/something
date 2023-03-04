@@ -23,7 +23,7 @@ set ignorecase
 
 " 设置 <TAB> 默认空 4 格
 set ts=4
-set tabstop=4
+"set tabstop=4
 
 " 行号配置
 set number
@@ -96,6 +96,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ervandew/supertab'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
@@ -105,6 +106,8 @@ call plug#end()
 "======================================
 "           Coc.vim settings
 "======================================
+" 加载更新时间
+set updatetime=100
 " 加载 Coc 插件
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
@@ -118,14 +121,8 @@ let g:coc_global_extensions = [
 	\ 'coc-tsserver',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
-" 使用 TAB 取用补全
-" inoremap <silent><expr> <TAB>
-"       \ coc#pum#visible() ? coc#pum#next(1) :
-"       \ CheckBackspace() ? "\<Tab>" :
-"       \ coc#refresh()
-" coc-prettier 相关设置
-command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-noremap <C-F> :Prettier<CR>
+" 补全提示方向
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "======================================
 "           NerdTree manage
@@ -133,9 +130,10 @@ noremap <C-F> :Prettier<CR>
 map fs :NERDTreeToggle<CR>
 "
 "======================================
-"           NerdTree manage
+"           Other settings
 "======================================
 " 对齐标准线和可视化缩进
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
-
+" Prettier 快捷操作
+noremap <C-F> :Prettier<CR>
