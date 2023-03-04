@@ -87,6 +87,3 @@ main() {
         ;;
     esac
 }
-
-echo "finished, type <enter> continue"
-read none
