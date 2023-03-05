@@ -25,8 +25,8 @@ syntax on
 set ignorecase
 
 " 设置 <TAB> 默认空 4 格
-set tabstop=4
-set shiftwidth=4
+set tabstop=8
+set shiftwidth=8
 
 " 行号配置
 set number
@@ -103,7 +103,7 @@ Plug 'ervandew/supertab'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 "
 "======================================
@@ -124,7 +124,7 @@ let g:coc_global_extensions = [
 	\ 'coc-tsserver',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
-" 补全提示切换方向
+" 补全提示切换方向从上往下
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "======================================
