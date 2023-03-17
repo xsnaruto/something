@@ -33,7 +33,7 @@ set number
 set norelativenumber
 
 " 保持编辑行的上下留出空余行数
-set scrolloff=5
+set scrolloff=7
 
 " 配色设置
 set background=dark
