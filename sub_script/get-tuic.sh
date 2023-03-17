@@ -42,6 +42,7 @@ User=root
 WorkingDirectory=/opt/tuic
 ExecStart=/opt/tuic/tuic-server-${VER}-x86_64-linux-gnu -c config.json
 Restart=on-failure
+RestartSec=7s
 RestartPreventExitStatus=1
 RestartSec=5
 
