@@ -102,7 +102,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ervandew/supertab'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'vim-autoformat/vim-autoformat'
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
 Plug 'Yggdroot/indentLine'
@@ -140,4 +141,4 @@ map fs :NERDTreeToggle<CR>
 " 对齐标准线和可视化缩进
 " let g:indentLine_defaultGroup = 'SpecialKey'
 " Prettier 快捷操作
-noremap <C-F> :Prettier<CR>
+noremap <C-F> :AutoFormat
