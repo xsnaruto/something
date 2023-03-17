@@ -49,6 +49,8 @@ let g:rehash256 = 1
 let mapleader=" "
 " Fast open init.vim
 noremap init :e ~/.config/nvim/init.vim<CR>
+" Set filetype
+noremap ft :set filetype=
 " Reload init.vim
 map <C-r> :source %<CR>
 " Fast scroll line
