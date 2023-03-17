@@ -141,4 +141,4 @@ map fs :NERDTreeToggle<CR>
 " 对齐标准线和可视化缩进
 " let g:indentLine_defaultGroup = 'SpecialKey'
 " Prettier 快捷操作
-noremap <C-F> :AutoFormat
+noremap <C-F> :Autoformat
