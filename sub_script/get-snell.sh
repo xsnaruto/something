@@ -2,8 +2,9 @@
 echo "Start install snell (v4)"
 sleep 1s
 
-VER="4.0.1"
 SNELL_DIR="/root/snell"
+VER="4.0.1"
+ARCH="$(dpkg --print-architecture)"
 
 # Install unzip
 echo "Y\n" | apt install unzip
@@ -11,7 +12,7 @@ echo "Y\n" | apt install unzip
 # Prepare dir and file
 rm ${SNELL_DIR} -r >>/dev/null 2>&1
 mkdir ${SNELL_DIR} && cd ${SNELL_DIR} >>/dev/null 2>&1
-wget https://dl.nssurge.com/snell/snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
+wget https://dl.nssurge.com/snell/snell-server-v${VER}-linux-${ARCh}.zip >>/dev/null 2>&1
 unzip snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
 rm snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
 chmod +x snell-server >>/dev/null 2>&1
@@ -19,7 +20,7 @@ echo "Y\n" | ${SNELL_DIR}/snell-server >>/dev/null 2>&1
 echo "obfs = http" >>${SNELL_DIR}v4/snell-server.conf
 echo "tfo = true" >>${SNELL_DIR}v4/snell-server.conf
 
-# Create tuic config
+# Create snell config
 cat >${SNELL_DIR}/snell.service <<-EOF
 [Unit]
 Description=Snell Proxy Service
