@@ -22,7 +22,7 @@ set list lcs=tab:\┆\
 syntax on
 
 " 忽略大小写
-set ignorecase
+set ignorecase smartcase
 
 " 设置 <TAB> 默认空 4 格
 set tabstop=8
