@@ -12,9 +12,9 @@ echo "Y\n" | apt install unzip
 # Prepare dir and file
 rm ${SNELL_DIR} -r >>/dev/null 2>&1
 mkdir ${SNELL_DIR} && cd ${SNELL_DIR} >>/dev/null 2>&1
-wget https://dl.nssurge.com/snell/snell-server-v${VER}-linux-${ARCh}.zip >>/dev/null 2>&1
-unzip snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
-rm snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
+wget https://dl.nssurge.com/snell/snell-server-v${VER}-linux-${ARCH}.zip >>/dev/null 2>&1
+unzip snell-server-v${VER}-linux-${ARCH}.zip >>/dev/null 2>&1
+rm snell-server-v${VER}-linux-${ARCH}.zip >>/dev/null 2>&1
 chmod +x snell-server >>/dev/null 2>&1
 echo "Y\n" | ${SNELL_DIR}/snell-server >>/dev/null 2>&1
 echo "obfs = http" >>${SNELL_DIR}/snell-server.conf
