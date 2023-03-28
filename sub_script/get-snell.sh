@@ -17,8 +17,8 @@ unzip snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
 rm snell-server-v${VER}-linux-${arch}.zip >>/dev/null 2>&1
 chmod +x snell-server >>/dev/null 2>&1
 echo "Y\n" | ${SNELL_DIR}/snell-server >>/dev/null 2>&1
-echo "obfs = http" >>${SNELL_DIR}v4/snell-server.conf
-echo "tfo = true" >>${SNELL_DIR}v4/snell-server.conf
+echo "obfs = http" >>${SNELL_DIR}/snell-server.conf
+echo "tfo = true" >>${SNELL_DIR}/snell-server.conf
 
 # Create snell config
 cat >${SNELL_DIR}/snell.service <<-EOF
