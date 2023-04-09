@@ -5,7 +5,7 @@ apt() {
 	clear
 	/usr/bin/apt update >>/dev/null 2>&1
 	echo "install: zsh curl git neovim rclone unzip p7zip-full npm"
-	echo "Y\n" | /usr/bin/apt install zsh curl git neovim rclone unzip p7zip-full npm -y >>/dev/null 2>&1
+	echo "Y\n" | /usr/bin/apt install zsh curl git neovim rclone unzip p7zip-full npm -y
 	echo "finished, type <enter> continue"
 	read none
 	sleep 3s
