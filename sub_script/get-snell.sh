@@ -47,9 +47,9 @@ echo "snell file preparing"
 rm /etc/snell-server.conf >>/dev/null 2>&1
 rm /usr/local/bin/snell-server >>/dev/null 2>&1
 rm /lib/systemd/system/snell.service >>/dev/null 2>&1
-ln -s ${SNELL_DIR}/snell-server.conf /etc >>/dev/null 2>&1
-ln -s ${SNELL_DIR}/snell-server /usr/local/bin >>/dev/null 2>&1
-ln -s ${SNELL_DIR}/snell.service /lib/systemd/system >>/dev/null 2>&1
+mv ${SNELL_DIR}/snell-server.conf /etc >>/dev/null 2>&1
+mv ${SNELL_DIR}/snell-server /usr/local/bin >>/dev/null 2>&1
+mv ${SNELL_DIR}/snell.service /lib/systemd/system >>/dev/null 2>&1
 systemctl enable snell.service
 systemctl retart snell.service
 
@@ -64,3 +64,6 @@ echo "============================================="
 echo " Plz check node infomation"
 echo "finished, type <enter> continue"
 read none
+
+echo "================= Cleaning File ================="
+rm -rf ${SNELL_DIR}
