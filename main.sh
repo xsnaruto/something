@@ -148,9 +148,13 @@ nginx() {
 			echo "nginx install start"
 			echo -n "type any key to continue"
 			read
-			wget https://github.com/ononoki1/nginx-http3/releases/latest/download/nginx.deb >>/dev/null 2>&1
-			dpkg -i nginx.deb >>/dev/null 2>&1
-			rm nginx.deb >>/dev/null 2>&1
+			wget https://github.com/ononoki1/nginx-http3/releases/latest/download/nginx.deb
+			dpkg -i nginx.deb
+			rm nginx.deb
+   			sudo systemctl stop nginx
+			sudo wget https://github.com/ononoki1/nginx-quictls/releases/latest/download/nginx -O /usr/sbin/nginx
+			sudo chmod +x /usr/sbin/nginx
+			sudo systemctl start nginx
 			echo "nginx installed"
 			sleep 3s
 			nginx
