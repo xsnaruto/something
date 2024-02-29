@@ -118,13 +118,9 @@ set updatetime=100
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
 	\ 'coc-css',
-	\ 'coc-docker',
-	\ 'coc-gitignore',
 	\ 'coc-html',
 	\ 'coc-json',
 	\ 'coc-syntax',
-	\ 'coc-translator',
-	\ 'coc-tsserver',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml']
 " 补全提示切换方向从上往下
