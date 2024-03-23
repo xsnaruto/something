@@ -40,10 +40,9 @@ set number			" 顯示行號
 set norelativenumber		
 set cursorline			" 高亮當前行
 
-" 禁止创建备份文件
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.swapfile = false
+set nobackup			" 禁止创建备份文件
+set nowritebackup		" 禁止创建写入备份文件
+set noswapfile			" 禁止创建交换文件
 
 " 保持编辑行的上下留出空余行数
 set scrolloff=7
