@@ -24,9 +24,16 @@ syntax on
 " 忽略大小写
 set ignorecase smartcase
 
-" 设置 <TAB> 默认空 4 格
-set tabstop=8
-set shiftwidth=8
+" 禁止雙引號自動隱藏
+:set conceallevel=0
+
+" 縮進相關設置
+set autoindent			" 自动缩进
+set smartindent			" 智能缩进
+set tabstop=4			" 设置tab制表符号所占宽度为4
+set softtabstop=4		" 设置按tab时缩进宽度为4
+set shiftwidth=4		" 设置自动缩进宽度为4
+" set expandtab			" 缩进时将tab制表服转为空格
 
 " 行号配置
 set number
