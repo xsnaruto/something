@@ -36,8 +36,14 @@ set shiftwidth=4		" 设置自动缩进宽度为4
 " set expandtab			" 缩进时将tab制表服转为空格
 
 " 行号配置
-set number
-set norelativenumber
+set number			" 顯示行號
+set norelativenumber		
+set cursorline			" 高亮當前行
+
+" 禁止创建备份文件
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false
 
 " 保持编辑行的上下留出空余行数
 set scrolloff=7
