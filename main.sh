@@ -162,7 +162,7 @@ nginx() {
 			echo "install newest nginx"
 			sleep 1s
 			/usr/bin/apt remove nginx -y >>/dev/null 2>&1 
-			rm /etc/nginx/nginx.conf >>/dev/null 2>&1 
+			 
 			/usr/bin/apt update >>/dev/null 2>&1
 			echo | /usr/bin/apt reinstall nginx -y >>/dev/null 2>&1
 			echo "nginx installed"
