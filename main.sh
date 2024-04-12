@@ -129,7 +129,8 @@ nginx() {
 		echo -e "1. apt (based version)"
 		echo -e "2. deb (h3 & brotli)"
 		echo -e "3. script (compile)"
-		echo -e "4. quit"
+  		echo -e "4. plugins (brotli)"
+		echo -e "5. quit"
 		echo -e "============================="
 		echo -n "choose operation: "
 		read install_option
@@ -159,23 +160,14 @@ nginx() {
 			echo "Signed-By: /etc/apt/keyrings/nginx_signing.key" >> /etc/apt/sources.list.d/nginx.sources
 			
 			echo "source added"
+   
 			echo "install newest nginx"
 			sleep 1s
 			/usr/bin/apt remove nginx -y >>/dev/null 2>&1 
-			 
 			/usr/bin/apt update >>/dev/null 2>&1
 			echo | /usr/bin/apt reinstall nginx -y >>/dev/null 2>&1
 			echo "nginx installed"
-			echo "brotli plugging"
-			sleep 1s
-			mkdir ./brotli-plugging && cd ./brotli-plugging && wget https://raw.githubusercontent.com/davidrobin/nginx-brotli-modules/main/build-nginx-brotli-modules.sh && bash build-nginx-brotli-modules.sh
-			mv ngx* /usr/lib/nginx/modules 
-			rm ../brotli-plugging -r
-			sudo sed -i '1i\' /etc/nginx/nginx.conf
-			sudo sed -i '1i\load_module modules/ngx_http_brotli_filter_module.so;' /etc/nginx/nginx.conf
-			sudo sed -i '1i\load_module modules/ngx_http_brotli_static_module.so;' /etc/nginx/nginx.conf
-			echo "brotli plugged"
-			sleep 1s
+			sleep 3s
 			nginx
 			;;
 		"deb")
@@ -205,6 +197,22 @@ nginx() {
 			chmod +x nginx-autoinstall.sh && bash nginx-autoinstall.sh
 			echo "nginx installed"
 			sleep 3s
+			nginx
+			;;
+   		"plugins")
+     			clear
+			echo "brotli plugging"
+			sleep 1s
+			mkdir ./brotli-plugging && cd ./brotli-plugging
+   			wget https://raw.githubusercontent.com/davidrobin/nginx-brotli-modules/main/build-nginx-brotli-modules.sh
+      			bash build-nginx-brotli-modules.sh
+			mv ngx* /usr/lib/nginx/modules 
+			rm ../brotli-plugging -r
+			sudo sed -i '1i\' /etc/nginx/nginx.conf
+			sudo sed -i '1i\load_module modules/ngx_http_brotli_filter_module.so;' /etc/nginx/nginx.conf
+			sudo sed -i '1i\load_module modules/ngx_http_brotli_static_module.so;' /etc/nginx/nginx.conf
+			echo "brotli plugged"
+   			sleep 3s
 			nginx
 			;;
 		"quit")
