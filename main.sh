@@ -161,6 +161,7 @@ nginx() {
 			echo "source added"
 			echo "install newest nginx"
 			sleep 1s
+			rm /etc/nginx/nginx.conf >>/dev/null 2>&1 
 			/usr/bin/apt update >>/dev/null 2>&1
 			echo | /usr/bin/apt reinstall nginx -y >>/dev/null 2>&1
 			echo "nginx installed"
