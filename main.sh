@@ -144,11 +144,14 @@ nginx() {
 			wget -qO - https://nginx.org/packages/keys/nginx_signing.key | sudo tee /etc/apt/keyrings/nginx_signing.key
 			
 			rm /etc/apt/sources.list.d/nginx.sources && touch /etc/apt/sources.list.d/nginx.sources
+			# 获取当前系统的 Suites 和架构
+			CURRENT_SUITES=$(lsb_release -cs)
+			CURRENT_ARCH=$(dpkg --print-architecture)
 			sudo bash -c 'echo "Types: deb" >> /etc/apt/sources.list.d/nginx.sources'
 			sudo bash -c 'echo "URIs: https://nginx.org/packages/mainline/ubuntu/" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "Suites: jammy" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "Suites: $CURRENT_SUITES" >> /etc/apt/sources.list.d/nginx.sources'
 			sudo bash -c 'echo "Components: nginx" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "Architectures: amd64" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "Architectures: $CURRENT_ARCH" >> /etc/apt/sources.list.d/nginx.sources'
 			sudo bash -c 'echo "Signed-By: /etc/apt/keyrings/nginx_signing.key" >> /etc/apt/sources.list.d/nginx.sources'
 			
 			echo "source added"
