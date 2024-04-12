@@ -147,6 +147,8 @@ nginx() {
 			# 获取当前系统的 Suites 和架构
 			CURRENT_SUITES=$(lsb_release -cs)
 			CURRENT_ARCH=$(dpkg --print-architecture)
+			echo "current suites $CURRENT_SUITES"
+			echo "current arch $CURRENT_ARCH"
 			sudo bash -c 'echo "Types: deb" >> /etc/apt/sources.list.d/nginx.sources'
 			sudo bash -c 'echo "URIs: https://nginx.org/packages/mainline/ubuntu/" >> /etc/apt/sources.list.d/nginx.sources'
 			sudo bash -c 'echo "Suites: $CURRENT_SUITES" >> /etc/apt/sources.list.d/nginx.sources'
