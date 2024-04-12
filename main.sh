@@ -204,8 +204,8 @@ nginx() {
 			echo "brotli plugging"
 			sleep 1s
 			mkdir ./brotli-plugging && cd ./brotli-plugging
-   			wget https://raw.githubusercontent.com/davidrobin/nginx-brotli-modules/main/build-nginx-brotli-modules.sh
-      			bash build-nginx-brotli-modules.sh
+   			wget https://github.com/xsnaruto/something/raw/main/sub_script/get-brotli.sh
+      			bash get-brotli.sh
 			mv ngx* /usr/lib/nginx/modules 
 			rm ../brotli-plugging -r
 			sudo sed -i '1i\' /etc/nginx/nginx.conf
