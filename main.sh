@@ -141,7 +141,7 @@ nginx() {
 			echo "add nginx offical source"
 			apt install wget coreutils -y >>/dev/null 2>&1
 			mkdir -p /etc/apt/keyrings
-			wget -qO - https://nginx.org/packages/keys/nginx_signing.key | sudo tee /etc/apt/keyrings/nginx_signing.key
+			wget -qO - https://nginx.org/packages/keys/nginx_signing.key | sudo tee /etc/apt/keyrings/nginx_signing.key >>/dev/null 2>&1
 			
 			rm /etc/apt/sources.list.d/nginx.sources && touch /etc/apt/sources.list.d/nginx.sources
 			# 获取当前系统的 Suites 和架构
