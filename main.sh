@@ -150,12 +150,12 @@ nginx() {
 			echo "current suites: $CURRENT_SUITES"
 			echo "current arch: $CURRENT_ARCH"
 			sleep 1s
-			sudo bash -c 'echo "Types: deb" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "URIs: https://nginx.org/packages/mainline/ubuntu/" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "Suites: $CURRENT_SUITES" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "Components: nginx" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "Architectures: $CURRENT_ARCH" >> /etc/apt/sources.list.d/nginx.sources'
-			sudo bash -c 'echo "Signed-By: /etc/apt/keyrings/nginx_signing.key" >> /etc/apt/sources.list.d/nginx.sources'
+			echo "Types: deb" >> /etc/apt/sources.list.d/nginx.sources
+			echo "URIs: https://nginx.org/packages/mainline/ubuntu/" >> /etc/apt/sources.list.d/nginx.sources
+			echo "Suites: $CURRENT_SUITES" >> /etc/apt/sources.list.d/nginx.sources
+			echo "Components: nginx" >> /etc/apt/sources.list.d/nginx.sources
+			echo "Architectures: $CURRENT_ARCH" >> /etc/apt/sources.list.d/nginx.sources
+			echo "Signed-By: /etc/apt/keyrings/nginx_signing.key" >> /etc/apt/sources.list.d/nginx.sources
 			
 			echo "source added"
 			echo "install newest nginx"
