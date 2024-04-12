@@ -142,13 +142,15 @@ nginx() {
 			apt install wget coreutils -y >>/dev/null 2>&1
 			mkdir -p /etc/apt/keyrings
 			wget -qO - https://nginx.org/packages/keys/nginx_signing.key | sudo tee /etc/apt/keyrings/nginx_signing.key
-			echo "Types: deb
-URIs: https://nginx.org/packages/mainline/ubuntu/
-Suites: jammy
-Components: nginx
-Architectures: amd64
-Signed-By: /etc/apt/keyrings/nginx_signing.key" > /etc/apt/sources.list.d/nginx.sources
-   
+			
+			rm /etc/apt/sources.list.d/nginx.sources && touch /etc/apt/sources.list.d/nginx.sources
+			sudo bash -c 'echo "Types: deb" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "URIs: https://nginx.org/packages/mainline/ubuntu/" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "Suites: jammy" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "Components: nginx" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "Architectures: amd64" >> /etc/apt/sources.list.d/nginx.sources'
+			sudo bash -c 'echo "Signed-By: /etc/apt/keyrings/nginx_signing.key" >> /etc/apt/sources.list.d/nginx.sources'
+			
 			echo "source added"
 			echo "install newest nginx"
 			sleep 1s
