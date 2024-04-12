@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # 环境安装脚本（测试）
 
 apt() {
@@ -137,9 +137,26 @@ nginx() {
 		"apt")
 			clear
 			echo "nginx installing"
+			sleep 1s
+			echo "add nginx offical source"
+			apt install wget coreutils -y >>/dev/null 2>&1
+			mkdir -p /etc/apt/keyrings
+			wget -qO - https://nginx.org/packages/keys/nginx_signing.key | sudo tee /etc/apt/keyrings/nginx_signing.key
+			echo "Types: deb
+URIs: https://nginx.org/packages/mainline/ubuntu/
+Suites: jammy
+Components: nginx
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/nginx_signing.key" > /etc/apt/sources.list.d/nginx.sources
+   
+			echo "source added"
+			echo "install newest nginx"
+			sleep 1s
+			apt update >>/dev/null 2>&1
 			echo "Y\n" | /usr/bin/apt install nginx >>/dev/null 2>&1
 			echo "nginx installed"
-			sleep 3s
+			echo "brotli plugging"
+			sleep 1s
 			nginx
 			;;
 		"deb")
