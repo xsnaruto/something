@@ -161,13 +161,14 @@ nginx() {
 			echo "source added"
 			echo "install newest nginx"
 			sleep 1s
+			/usr/bin/apt remove nginx -y >>/dev/null 2>&1 
 			rm /etc/nginx/nginx.conf >>/dev/null 2>&1 
 			/usr/bin/apt update >>/dev/null 2>&1
 			echo | /usr/bin/apt reinstall nginx -y >>/dev/null 2>&1
 			echo "nginx installed"
 			echo "brotli plugging"
 			sleep 1s
-			mkdir ./brotli-plugging && cd ./brotli-plugging && wget https://raw.githubusercontent.com/davidrobin/nginx-brotli-modules/main/build-nginx-brotli-modules.sh && bash build-nginx-brotli-modules
+			mkdir ./brotli-plugging && cd ./brotli-plugging && wget https://raw.githubusercontent.com/davidrobin/nginx-brotli-modules/main/build-nginx-brotli-modules.sh && bash build-nginx-brotli-modules.sh
 			mv ngx* /usr/lib/nginx/modules 
 			rm ../brotli-plugging -r
 			sudo sed -i '1i\' /etc/nginx/nginx.conf
