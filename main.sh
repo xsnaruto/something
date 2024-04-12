@@ -141,6 +141,7 @@ nginx() {
 			echo "add nginx offical source"
 			/usr/bin/apt install wget coreutils -y >>/dev/null 2>&1
 			mkdir -p /etc/apt/keyrings
+			rm /etc/apt/keyrings/nginx_signing.key >>/dev/null 2>&1
 			wget -qO - https://nginx.org/packages/keys/nginx_signing.key | sudo tee /etc/apt/keyrings/nginx_signing.key >>/dev/null 2>&1
 			
 			rm /etc/apt/sources.list.d/nginx.sources >>/dev/null 2>&1 && touch /etc/apt/sources.list.d/nginx.sources
