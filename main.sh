@@ -208,7 +208,7 @@ nginx() {
    bash get-brotli.sh
 			rm ../brotli-plugging -r
 			echo "brotli plugged"
-   			sleep 3s
+   sleep 3s
 			nginx
 			;;
 		"quit")
