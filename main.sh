@@ -207,9 +207,6 @@ nginx() {
    wget https://github.com/xsnaruto/something/raw/main/sub_script/get-brotli.sh
    bash get-brotli.sh
 			rm ../brotli-plugging -r
-			# sudo sed -i '1i\' /etc/nginx/nginx.conf
-			# sudo sed -i '1i\load_module modules/ngx_http_brotli_filter_module.so;' /etc/nginx/nginx.conf
-			# sudo sed -i '1i\load_module modules/ngx_http_brotli_static_module.so;' /etc/nginx/nginx.conf
 			echo "brotli plugged"
    			sleep 3s
 			nginx
