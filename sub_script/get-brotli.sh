@@ -3,7 +3,7 @@
 if [ ! -x /usr/sbin/nginx ]; then
   echo "Please install Nginx prior to execute this script."
 else
-  nginxVersion=$(/usr/sbin/nginx -v |& sed 's/nginx version: nginx\///') && \
+  nginxVersion=$(/usr/sbin/nginx -v |& sed 's/.*nginx\///; s/ .*//') && \
   echo "Nginx found with version: $nginxVersion" && \
   sudo apt -qq install build-essential cmake git libpcre3-dev tar wget -y && \
   git clone --recurse-submodules -j8 https://github.com/google/ngx_brotli && \
