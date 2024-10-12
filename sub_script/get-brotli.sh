@@ -20,6 +20,7 @@ else
   ./configure --with-compat --add-dynamic-module=../ngx_brotli && \
   make modules && \
   cd objs && \
-  mv *.so ../../ && cd ../.. && \
+  mkdir /etc/nginx/modules
+  mv *.so /etc/nginx/modules && cd ../.. && \
   rm -rf ngx_brotli && rm -rf nginx-${nginxVersion}
 fi
