@@ -21,6 +21,6 @@ else
   make modules && \
   cd objs && \
   mkdir /etc/nginx/modules
-  mv *.so /etc/nginx/modules && cd ../.. && \
+  mv *.so /etc/nginx/modules-enabled && cd ../.. && \
   rm -rf ngx_brotli && rm -rf nginx-${nginxVersion}
 fi
