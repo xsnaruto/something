@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt install zlib1g-dev -y
+
 if [ ! -x /usr/sbin/nginx ]; then
   echo "Please install Nginx prior to execute this script."
 else
