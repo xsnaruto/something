@@ -26,5 +26,6 @@ else
 fi
 
 sed -i '1i\' /etc/nginx/nginx.conf
+sed -i '1i\' /etc/nginx/nginx.conf
 sed -i '1i\load_module /etc/nginx/modules-brotli/ngx_http_brotli_filter_module.so;' /etc/nginx/nginx.conf
 sed -i '1i\load_module /etc/nginx/modules-brotli/ngx_http_brotli_static_module.so;' /etc/nginx/nginx.conf
