@@ -6,7 +6,7 @@ sleep 1s
 rm -rf ~/.oh-my-zsh >>/dev/null 2>&1
 
 # Install & Update zsh
-echo "Y\n" | apt install zsh
+sudo apt install zsh -y
 
 # Install ohmyzsh
 echo "y\n" | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >>/dev/null 2>&1
