@@ -3,9 +3,9 @@
 
 apt() {
 	clear
-	/usr/bin/apt update >>/dev/null 2>&1
+	sudo apt update >>/dev/null 2>&1
 	echo "install: zsh curl git neovim rclone unzip p7zip-full npm"
-	echo "Y\n" | /usr/bin/apt install zsh curl git neovim rclone unzip p7zip-full npm -y
+	sudo apt install zsh curl git neovim rclone unzip p7zip-full npm -y
 	echo "finished, type <enter> continue"
 	read none
 	sleep 3s
@@ -205,7 +205,7 @@ nginx() {
 			sleep 1s
 			mkdir ./brotli-plugging && cd ./brotli-plugging
    wget https://github.com/xsnaruto/something/raw/main/sub_script/get-brotli.sh
-   bash get-brotli.sh
+   sudo bash get-brotli.sh
 			rm ../brotli-plugging -r
 			echo "brotli plugged"
    sleep 3s
