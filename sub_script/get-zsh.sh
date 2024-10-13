@@ -3,7 +3,7 @@ echo "Install zsh and plugin"
 sleep 1s
 
 # Clean may exist junk file
-rm -r ~/.oh-my-zsh >>/dev/null 2>&1
+rm -rf ~/.oh-my-zsh >>/dev/null 2>&1
 
 # Install & Update zsh
 echo "Y\n" | apt install zsh
@@ -20,7 +20,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 sed -i "s#plugins=(git)#plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)#g" ~/.zshrc >>/dev/null 2>&1
 
 # Clean junk & Install  Starship
-sh -c 'rm "$(command -v 'starship')"' >>/dev/null 2>&1
+sh -c 'rm -rf "$(command -v 'starship')"' >>/dev/null 2>&1
 sed -i "/# Starship/d" ~/.zshrc >>/dev/null 2>&1
 sed -i "/eval \"\$(starship init zsh)\"/d" ~/.zshrc >>/dev/null 2>&1
 
