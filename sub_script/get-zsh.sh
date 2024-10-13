@@ -9,7 +9,7 @@ rm -rf ~/.oh-my-zsh >>/dev/null 2>&1
 sudo apt install zsh -y
 
 # Install ohmyzsh
-echo "y\n" | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >>/dev/null 2>&1
+echo "y\n" | sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >>/dev/null 2>&1
 # Set zsh as default shell
 echo -e "/bin/zsh\n" | chsh >>/dev/null 2>&1
 
