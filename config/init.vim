@@ -114,8 +114,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ervandew/supertab'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'vim-autoformat/vim-autoformat'
+" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'vim-autoformat/vim-autoformat'
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' } " ScrollView at leftside
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
@@ -132,6 +132,7 @@ set updatetime=100
 " 加载 Coc 插件
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
+  \ 'coc-prettier',
 	\ 'coc-css',
 	\ 'coc-html',
 	\ 'coc-json',
