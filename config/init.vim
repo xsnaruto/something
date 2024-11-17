@@ -135,8 +135,6 @@ let g:coc_global_extensions = [
 	\ 'coc-css',
 	\ 'coc-html',
 	\ 'coc-json',
-	\ 'coc-syntax',
-	\ 'coc-vimlsp',
 	\ 'coc-yaml']
 " 补全提示切换方向从上往下
 let g:SuperTabDefaultCompletionType = "<c-n>"
