@@ -28,7 +28,7 @@ set ignorecase smartcase
 :set conceallevel=0
 
 " 縮進相關設置
-set autoindent			" 自动缩进
+set noautoindent			" 自动缩进
 set smartindent			" 智能缩进
 set tabstop=4			" 设置tab制表符号所占宽度为4
 set softtabstop=4		" 设置按tab时缩进宽度为4
@@ -114,11 +114,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ervandew/supertab'
-" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' } " ScrollView at leftside
 Plug 'mbbill/undotree'
-Plug 'preservim/nerdtree'
 Plug 'Yggdroot/indentLine'
+Plug 'WolfgangMehner/bash-support', { 'commit': '99c746c' } " Bash Support
+Plug 'preservim/nerdtree', { 'tag': '7.1.2' } " NerdTree
+Plug 'jlanzarotta/bufexplorer', { 'commit': '20f0440' } " File history
 call plug#end()
 "
 "======================================
