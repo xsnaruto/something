@@ -98,68 +98,109 @@ vim.keymap.set('n', 'tt', ':tabe<CR>', opts)
 vim.keymap.set('n', 'th', ':-tabnext<CR>', opts)
 vim.keymap.set('n', 'tl', ':+tabnext<CR>', opts)
 
--- vim-plug 自动安装
-local install_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.system({
-        'curl', '-fLo', install_path, '--create-dirs',
-        'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    })
+-- 自动安装 lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- 推荐使用稳定分支
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- 插件安装
-vim.cmd([[
-call plug#begin()
-" UI 增强
-" Plug 'hardcoreplayers/dashboard-nvim'
-" Plug 'vim-airline/vim-airline'
+-- 配置 lazy.nvim
+require("lazy").setup({
+  -- coc.nvim 的插件配置
+  {
+    "neoclide/coc.nvim",
+    branch = "release",
+    config = function()
+      -- coc.nvim 配置
+      vim.g.coc_global_extensions = {
+        "coc-marketplace", "coc-sh", "coc-html", "coc-css", "coc-tsserver", "coc-python", "coc-yaml", "coc-json", "coc-xml"
+      }
 
-" 语法高亮
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+      -- 检查光标是否在行首或空白字符后
+      function _G.check_backspace()
+        local col = vim.fn.col('.') - 1
+        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+      end
 
-" LSP 支持
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+      -- 设置快捷键
+      vim.api.nvim_set_keymap(
+        "i", -- 插入模式
+        "<TAB>",
+        'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_backspace() ? "<TAB>" : coc#refresh()',
+        { silent = true, noremap = true, expr = true, replace_keycodes = false }
+      )
 
-" 其他插件
-" Plug 'ervandew/supertab'
-" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-" Plug 'vim-autoformat/vim-autoformat'
-Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
-Plug 'mbbill/undotree'
-Plug 'Yggdroot/indentLine'
-Plug 'WolfgangMehner/bash-support', { 'commit': '99c746c' }
-Plug 'preservim/nerdtree', { 'tag': '7.1.2' }
-Plug 'jlanzarotta/bufexplorer', { 'commit': '20f0440' }
-Plug 'github/copilot.vim'
-call plug#end()
+      vim.api.nvim_set_keymap(
+        "i", -- 插入模式
+        "<S-TAB>",
+        'coc#pum#visible() ? coc#pum#prev(1) : "<C-h>"',
+        { silent = true, noremap = true, expr = true, replace_keycodes = false }
+      )
 
+      vim.api.nvim_set_keymap(
+        "i", -- 插入模式
+        "<CR>",
+        'coc#pum#visible() ? coc#pum#confirm() : "<CR>"',
+        { silent = true, noremap = true, expr = true, replace_keycodes = false }
+      )
 
+      vim.api.nvim_set_keymap(
+        "n", -- 普通模式
+        "[g",
+        "<Plug>(coc-diagnostic-prev)",
+        { silent = true }
+      )
 
--- Coc配置
-vim.g.coc_global_extensions = {
-    'coc-marketplace',
-    'coc-explorer',
-    'coc-sh',
-    'coc-html',
-    'coc-css',
-    'coc-tsserver',
-    'coc-python',
-    'coc-json',
-    'coc-yaml',
-    'coc-prettier'
-}
+      vim.api.nvim_set_keymap(
+        "n", -- 普通模式
+        "]g",
+        "<Plug>(coc-diagnostic-next)",
+        { silent = true }
+      )
+
+      vim.api.nvim_set_keymap(
+        "n", -- 普通模式
+        "gd",
+        "<Plug>(coc-definition)",
+        { silent = true }
+      )
+
+      vim.api.nvim_set_keymap(
+        "n", -- 普通模式
+        "gy",
+        "<Plug>(coc-type-definition)",
+        { silent = true }
+      )
+
+      vim.api.nvim_set_keymap(
+        "n", -- 普通模式
+        "gr",
+        "<Plug>(coc-references)",
+        { silent = true }
+      )
+    end,
+  },
+})
 
 vim.opt.updatetime = 100
 
 -- SuperTab配置
-vim.g.SuperTabDefaultCompletionType = "<c-n>"
+-- vim.g.SuperTabDefaultCompletionType = "<c-n>"
 
 -- NERDTree配置
-vim.keymap.set('n', 'fs', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', 'fs', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
 -- 其他设置
 -- IndentLine配置
 -- vim.g.indentLine_defaultGroup = 'SpecialKey'
 
 -- Prettier配置
-vim.keymap.set('n', '<C-F>', ':Autoformat', opts)
+-- vim.keymap.set('n', '<C-F>', ':Autoformat', opts)
