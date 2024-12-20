@@ -36,7 +36,7 @@ set shiftwidth=4		" 设置自动缩进宽度为4
 set expandtab			" 缩进时将tab制表服转为空格
 
 " 行号配置
-set number			" 顯示行號
+set number	    		" 顯示行號
 set norelativenumber		
 set cursorline			" 高亮當前行
 
@@ -129,14 +129,15 @@ set updatetime=100
 " 加载 Coc 插件
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
-	\ 'coc-explorer',
-	\ 'coc-sh',
+    \ 'coc-sh',
 	\ 'coc-html',
 	\ 'coc-css',
-	\ 'coc-tsserver',
-	\ 'coc-python',
+    \ 'coc-tsserver',
+    \ 'coc-python',
+    \ 'coc-xml',
 	\ 'coc-json',
 	\ 'coc-yaml',
+	\ 'coc-json',
 	\ 'coc-syntax']
 " 补全提示切换方向从上往下
 let g:SuperTabDefaultCompletionType = "<c-n>"
