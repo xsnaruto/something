@@ -116,7 +116,7 @@ vim.cmd([[
 call plug#begin()
 " UI 增强
 " Plug 'hardcoreplayers/dashboard-nvim'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 
 " 语法高亮
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
