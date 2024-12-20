@@ -26,7 +26,7 @@ mkdir ~/.config/nvim/colors >>/dev/null 2>&1
 wget -O ~/.config/nvim/colors/molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim >>/dev/null 2>&1
 
 # Neovim config restore
-wget -O ~/.config/nvim/init.vim https://github.com/xsnaruto/something/raw/main/config/init.vim >>/dev/null 2>&1
+wget -O ~/.config/nvim/init.lua https://github.com/xsnaruto/something/raw/main/config/init.lua >>/dev/null 2>&1
 
 # Load PlugIns
 echo "finished, type <enter> continue"
