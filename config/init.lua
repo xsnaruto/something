@@ -1,18 +1,6 @@
--- Init.lua
---  __  __        __     _____ __  __    ____             __ _       
--- |  \/  |_   _  \ \   / /_ _|  \/  |  / ___|___  _ __  / _(_) __ _ 
--- | |\/| | | | |  \ \ / / | || |\/| | | |   / _ \| '_ \| |_| |/ _` |
--- | |  | | |_| |   \ V /  | || |  | | | |__| (_) | | | |  _| | (_| |
--- |_|  |_|\__, |    \_/  |___|_|  |_|  \____\___/|_| |_|_| |_|\__, |
---         |___/                                               |___/ 
---
-require('options')
-require('keymaps')
-require('plugins')
-require('plugin-config.coc')
-require('plugin-config.nerdtree')
+-- 文件: init.lua
 
--- lua/options.lua
+-- 基础设置
 local opt = vim.opt
 
 -- 编码设置
@@ -69,7 +57,7 @@ vim.cmd([[
     let g:rehash256 = 1
 ]])
 
--- lua/keymaps.lua
+-- 键位映射
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -114,7 +102,7 @@ keymap('n', 'tt', ':tabe<CR>', opts)
 keymap('n', 'th', ':-tabnext<CR>', opts)
 keymap('n', 'tl', ':+tabnext<CR>', opts)
 
--- lua/plugins.lua
+-- 插件管理
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
@@ -130,8 +118,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
     })
 end
 
+-- 创建一个自动命令组来确保在保存时自动同步
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = 'init.lua',
+    command = 'source <afile> | PackerSync'
+})
+
 -- 插件安装
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- use 'hardcoreplayers/dashboard-nvim'
     use 'vim-airline/vim-airline'
@@ -174,7 +168,6 @@ return require('packer').startup(function(use)
     end
 end)
 
--- lua/plugin-config/coc.lua
 -- Coc配置
 vim.g.coc_global_extensions = {
     'coc-marketplace',
@@ -194,7 +187,6 @@ vim.opt.updatetime = 100
 -- SuperTab配置
 vim.g.SuperTabDefaultCompletionType = "<c-n>"
 
--- lua/plugin-config/nerdtree.lua
 -- NERDTree配置
 vim.keymap.set('n', 'fs', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
