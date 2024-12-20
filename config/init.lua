@@ -29,10 +29,6 @@ vim.opt.cursorline = true               -- 高亮当前行
 vim.opt.scrolloff = 7                   -- 设置滚动时的空余行数
 
 -- Backup/Swap File settings
--- vim.opt.backup = false                 -- 禁止创建备份文件
--- vim.opt.writebackup = false            -- 禁止写入备份文件
--- vim.opt.swapfile = false               -- 禁止创建交换文件
-
 vim.cmd([[
 augroup AutoDeleteSwapOnWrite
   autocmd!
