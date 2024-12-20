@@ -5,16 +5,12 @@
 -- | |  | | |_| |   \ V /  | || |  | | | |__| (_) | | | |  _| | (_| |
 -- |_|  |_|\__, |    \_/  |___|_|  |_|  \____\___/|_| |_|_| |_|\__, |
 --         |___/                                               |___/ 
-
--- 基础设置
+--
 require('options')
--- 快捷键映射
 require('keymaps')
--- 插件管理
 require('plugins')
--- 插件配置
-require('plugin-config/coc')
-require('plugin-config/nerdtree')
+require('plugin-config.coc')
+require('plugin-config.nerdtree')
 
 -- lua/options.lua
 local opt = vim.opt
@@ -66,12 +62,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- 配色设置
-vim.cmd [[
+vim.cmd([[
     set t_Co=256
     colorscheme molokai
     let g:molokai_original = 1
     let g:rehash256 = 1
-]]
+]])
 
 -- lua/keymaps.lua
 local keymap = vim.keymap.set
@@ -81,7 +77,8 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 
 -- 快速打开配置文件
-keymap('n', 'init', ':e ~/.config/nvim/init.lua<CR>', opts)
+local config_path = vim.fn.stdpath('config')
+keymap('n', 'init', string.format(':e %s/init.lua<CR>', config_path), opts)
 
 -- 设置文件类型
 keymap('n', 'ft', ':set filetype=', opts)
@@ -119,11 +116,18 @@ keymap('n', 'tl', ':+tabnext<CR>', opts)
 
 -- lua/plugins.lua
 local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 -- 自动安装 packer
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    PACKER_BOOTSTRAP = fn.system({
+        'git',
+        'clone',
+        '--depth',
+        '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path
+    })
 end
 
 -- 插件安装
