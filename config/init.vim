@@ -50,11 +50,11 @@ set scrolloff=7
 " set nowritebackup     " 禁止创建写入备份文件
 " set noswapfile	        " 禁止创建交换文件
 
-augroup AutoDeleteSwapOnWrite
-  autocmd!
+" augroup AutoDeleteSwapOnWrite
+"   autocmd!
   " 在执行保存命令后删除 swap 文件
-  autocmd BufWritePost * if exists("v:swapname") | call delete(v:swapname) | let v:swapname = '' | endif
-augroup END
+"   autocmd BufWritePost * if exists("v:swapname") | call delete(v:swapname) | let v:swapname = '' | endif
+" augroup END
 
 
 " 配色设置
