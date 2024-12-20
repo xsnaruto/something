@@ -129,12 +129,15 @@ set updatetime=100
 " 加载 Coc 插件
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
-	\ 'coc-css',
+	\ 'coc-explorer',
+	\ 'coc-sh',
 	\ 'coc-html',
+	\ 'coc-css',
+	\ 'coc-tsserver',
+	\ 'coc-python',
 	\ 'coc-json',
-	\ 'coc-syntax',
-	\ 'coc-vimlsp',
-	\ 'coc-yaml']
+	\ 'coc-yaml',
+	\ 'coc-syntax']
 " 补全提示切换方向从上往下
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
