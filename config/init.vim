@@ -28,21 +28,21 @@ set ignorecase smartcase
 set conceallevel=0
 
 " 縮進相關設置
-set noautoindent			" 自动缩进
-set smartindent			" 智能缩进
-set tabstop=4			" 设置tab制表符号所占宽度为4
-set softtabstop=4		" 设置按tab时缩进宽度为4
-set shiftwidth=4		" 设置自动缩进宽度为4
-" set expandtab			" 缩进时将tab制表服转为空格
+set noautoindent	      " 自动缩进
+set smartindent			  " 智能缩进
+set tabstop=4         " 设置tab制表符号所占宽度为4
+set softtabstop=4     " 设置按tab时缩进宽度为4
+set shiftwidth=4	      " 设置自动缩进宽度为4
+set expandtab         " 缩进时将tab制表服转为空格
 
 " 行号配置
-set number			" 顯示行號
+set number			        " 顯示行號
 set norelativenumber		
-set cursorline			" 高亮當前行
+set cursorline			    " 高亮當前行
 
-set nobackup			" 禁止创建备份文件
-set nowritebackup		" 禁止创建写入备份文件
-set noswapfile			" 禁止创建交换文件
+set nobackup			      " 禁止创建备份文件
+set nowritebackup     " 禁止创建写入备份文件
+set noswapfile	        " 禁止创建交换文件
 
 " 保持编辑行的上下留出空余行数
 set scrolloff=7
@@ -122,7 +122,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'WolfgangMehner/bash-support', { 'commit': '99c746c' } " Bash Support
 Plug 'preservim/nerdtree', { 'tag': '7.1.2' } " NerdTree
 Plug 'jlanzarotta/bufexplorer', { 'commit': '20f0440' } " File history
-Plug 'github/copilot'
+Plug 'github/copilot.vim'
 call plug#end()
 "
 "======================================
@@ -133,14 +133,15 @@ set updatetime=100
 " 加载 Coc 插件
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
-	\ 'coc-css',
+	\ 'coc-explorer',
+	\ 'coc-sh',
 	\ 'coc-html',
-  \ 'coc-tsserver',
-  \ 'coc-python',
+	\ 'coc-css',
+	\ 'coc-tsserver',
+	\ 'coc-python',
 	\ 'coc-json',
 	\ 'coc-yaml',
-  \ 'coc-prettier'
-]
+	\ 'coc-prettier']
 " 补全提示切换方向从上往下
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
@@ -148,7 +149,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "           NerdTree manage
 "======================================
 map fs :NERDTreeToggle<CR>
-"
+
+
 "======================================
 "           Other settings
 "======================================
