@@ -25,7 +25,7 @@ syntax on
 set ignorecase smartcase
 
 " 禁止雙引號自動隱藏
-:set conceallevel=0
+set conceallevel=0
 
 " 縮進相關設置
 set autoindent			" 自动缩进
