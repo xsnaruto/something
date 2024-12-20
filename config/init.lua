@@ -1,32 +1,32 @@
 -- Basic settings
-vim.opt.encoding = 'utf-8'               -- 设置编码为 UTF-8
-vim.opt.termencoding = 'utf-8'           -- 设置终端编码为 UTF-8
-vim.opt.fileencoding = 'utf-8'          -- 设置文件编码为 UTF-8
+vim.opt.encoding = 'utf-8'                -- 设置编码为 UTF-8
+vim.opt.termencoding = 'utf-8'            -- 设置终端编码为 UTF-8
+vim.opt.fileencoding = 'utf-8'           -- 设置文件编码为 UTF-8
 
-vim.opt.list = true                      -- 显示制表符和空格
-vim.opt.listchars = { tab = '┆' }        -- 使用竖线表示 TAB 键
+vim.opt.list = true                       -- 显示制表符和空格
+vim.opt.listchars = { tab = '┆' }         -- 使用竖线表示 TAB 键
 
-vim.cmd('syntax on')                     -- 启用语法高亮
+vim.cmd('syntax on')                      -- 启用语法高亮
 
-vim.opt.ignorecase = true                -- 忽略搜索时的大小写
-vim.opt.smartcase = true                 -- 当搜索包含大写字母时，区分大小写
+vim.opt.ignorecase = true                 -- 忽略搜索时的大小写
+vim.opt.smartcase = true                  -- 当搜索包含大写字母时，区分大小写
 
-vim.opt.conceallevel = 0                -- 禁止字符自动隐藏，如双引号
+vim.opt.conceallevel = 0                 -- 禁止字符自动隐藏，如双引号
 
 -- 缩进设置
-vim.opt.autoindent = false              -- 关闭自动缩进
-vim.opt.smartindent = true              -- 启用智能缩进
-vim.opt.tabstop = 4                     -- 一个 TAB 键相当于 4 个空格
-vim.opt.softtabstop = 4                 -- 插入 TAB 时缩进的宽度
-vim.opt.shiftwidth = 4                  -- 向后移动时的缩进宽度
-vim.opt.expandtab = true                -- 使用空格代替 TAB
+vim.opt.autoindent = false                -- 关闭自动缩进
+vim.opt.smartindent = true                -- 启用智能缩进
+vim.opt.tabstop = 4                      -- 一个 TAB 键相当于 4 个空格
+vim.opt.softtabstop = 4                  -- 插入 TAB 时缩进的宽度
+vim.opt.shiftwidth = 4                   -- 向后移动时的缩进宽度
+vim.opt.expandtab = true                 -- 使用空格代替 TAB
 
 -- 行号设置
-vim.opt.number = true                    -- 显示行号
-vim.opt.relativenumber = false          -- 关闭相对行号
-vim.opt.cursorline = true               -- 高亮当前行
+vim.opt.number = true                     -- 显示行号
+vim.opt.relativenumber = false           -- 关闭相对行号
+vim.opt.cursorline = true                -- 高亮当前行
 
-vim.opt.scrolloff = 7                   -- 设置滚动时的空余行数
+vim.opt.scrolloff = 7                    -- 设置滚动时的空余行数
 
 -- Backup/Swap File settings
 vim.cmd([[
@@ -38,14 +38,14 @@ augroup END
 ]])
 
 -- 配色设置
-vim.opt.background = 'dark'             -- 设置背景为深色
-vim.opt.termguicolors = true            -- 支持更丰富的 256 色显示
-vim.cmd('colo molokai')                -- 设置配色方案为 molokai
-vim.g.molokai_original = 1              -- 保持原始 molokai 配色
+vim.opt.background = 'dark'              -- 设置背景为深色
+vim.opt.termguicolors = true             -- 支持更丰富的 256 色显示
+vim.cmd('colo molokai')                 -- 设置配色方案为 molokai
+vim.g.molokai_original = 1               -- 保持原始 molokai 配色
 vim.g.rehash256 = 1                     -- 强制重新加载 256 色
 
 -- Hotkey settings
-vim.g.mapleader = ' '                   -- 设置 Leader 键为空格
+vim.g.mapleader = ' '                    -- 设置 Leader 键为空格
 vim.api.nvim_set_keymap('n', '<Leader>init', ':e ~/.config/nvim/init.vim<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>ft', ':set filetype=', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-r>', ':source %<CR>', { noremap = true })
