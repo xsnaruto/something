@@ -102,77 +102,93 @@ keymap('n', 'tt', ':tabe<CR>', opts)
 keymap('n', 'th', ':-tabnext<CR>', opts)
 keymap('n', 'tl', ':+tabnext<CR>', opts)
 
--- 插件管理
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
+-- 插件管理 (lazy.nvim)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
--- 延迟加载插件配置
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup end
-]])
-
--- 安全地加载 packer
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
-    return
-end
-
--- 插件安装
-packer.startup(function(use)
-    use 'wbthomason/packer.nvim'
-    -- use 'hardcoreplayers/dashboard-nvim'
-    use 'vim-airline/vim-airline'
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    use {
-        'neoclide/coc.nvim',
-        branch = 'release'
-    }
-    -- use 'ervandew/supertab'
-    -- use {
-    --     'prettier/vim-prettier',
-    --     run = 'npm install'
-    -- }
-    -- use 'vim-autoformat/vim-autoformat'
-    use {
-        'dstein64/nvim-scrollview',
-        branch = 'main'
-    }
-    use 'mbbill/undotree'
-    use 'Yggdroot/indentLine'
-    use {
-        'WolfgangMehner/bash-support',
-        commit = '99c746c'
-    }
-    use {
-        'preservim/nerdtree',
-        tag = '7.1.2'
-    }
-    use {
-        'jlanzarotta/bufexplorer',
-        commit = '20f0440'
-    }
-    use 'github/copilot.vim'
-
-    if packer_bootstrap then
-        packer.sync()
-    end
-end)
+-- 插件配置
+require("lazy").setup({
+    -- UI 增强
+    {
+        "vim-airline/vim-airline",
+        event = "VeryLazy",
+    },
+    
+    -- 语法高亮
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                highlight = { enable = true },
+                indent = { enable = true },
+            })
+        end,
+    },
+    
+    -- LSP 支持
+    {
+        "neoclide/coc.nvim",
+        branch = "release",
+        event = { "BufReadPre", "BufNewFile" },
+    },
+    
+    -- 滚动条
+    {
+        "dstein64/nvim-scrollview",
+        event = "VeryLazy",
+    },
+    
+    -- 撤销树
+    {
+        "mbbill/undotree",
+        cmd = "UndotreeToggle",
+    },
+    
+    -- 缩进线
+    {
+        "Yggdroot/indentLine",
+        event = { "BufReadPost", "BufNewFile" },
+    },
+    
+    -- Bash 支持
+    {
+        "WolfgangMehner/bash-support",
+        commit = "99c746c",
+        ft = "sh",
+    },
+    
+    -- 文件树
+    {
+        "preservim/nerdtree",
+        version = "7.1.2",
+        cmd = "NERDTreeToggle",
+    },
+    
+    -- 缓冲区管理
+    {
+        "jlanzarotta/bufexplorer",
+        commit = "20f0440",
+        cmd = "BufExplorer",
+    },
+    
+    -- GitHub Copilot
+    {
+        "github/copilot.vim",
+        event = "InsertEnter",
+    },
+})
 
 -- Coc配置
 vim.g.coc_global_extensions = {
