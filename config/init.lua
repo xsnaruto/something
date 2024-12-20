@@ -1,8 +1,5 @@
 -- 文件: init.lua
 
--- 基础设置
-local opt = vim.opt
-
 -- 编码设置
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
