@@ -102,93 +102,46 @@ keymap('n', 'tt', ':tabe<CR>', opts)
 keymap('n', 'th', ':-tabnext<CR>', opts)
 keymap('n', 'tl', ':+tabnext<CR>', opts)
 
--- 插件管理 (lazy.nvim)
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+-- vim-plug 自动安装
+local install_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    vim.fn.system({
+        'curl', '-fLo', install_path, '--create-dirs',
+        'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    })
 end
-vim.opt.rtp:prepend(lazypath)
 
--- 插件配置
-require("lazy").setup({
-    -- UI 增强
-    {
-        "vim-airline/vim-airline",
-        event = "VeryLazy",
-    },
-    
-    -- 语法高亮
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile" },
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                highlight = { enable = true },
-                indent = { enable = true },
-            })
-        end,
-    },
-    
-    -- LSP 支持
-    {
-        "neoclide/coc.nvim",
-        branch = "release",
-        event = { "BufReadPre", "BufNewFile" },
-    },
-    
-    -- 滚动条
-    {
-        "dstein64/nvim-scrollview",
-        event = "VeryLazy",
-    },
-    
-    -- 撤销树
-    {
-        "mbbill/undotree",
-        cmd = "UndotreeToggle",
-    },
-    
-    -- 缩进线
-    {
-        "Yggdroot/indentLine",
-        event = { "BufReadPost", "BufNewFile" },
-    },
-    
-    -- Bash 支持
-    {
-        "WolfgangMehner/bash-support",
-        commit = "99c746c",
-        ft = "sh",
-    },
-    
-    -- 文件树
-    {
-        "preservim/nerdtree",
-        version = "7.1.2",
-        cmd = "NERDTreeToggle",
-    },
-    
-    -- 缓冲区管理
-    {
-        "jlanzarotta/bufexplorer",
-        commit = "20f0440",
-        cmd = "BufExplorer",
-    },
-    
-    -- GitHub Copilot
-    {
-        "github/copilot.vim",
-        event = "InsertEnter",
-    },
-})
+-- 插件安装
+vim.cmd([[
+call plug#begin()
+" UI 增强
+" Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'vim-airline/vim-airline'
+
+" 语法高亮
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" LSP 支持
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" 其他插件
+" Plug 'ervandew/supertab'
+" Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'vim-autoformat/vim-autoformat'
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+Plug 'mbbill/undotree'
+Plug 'Yggdroot/indentLine'
+Plug 'WolfgangMehner/bash-support', { 'commit': '99c746c' }
+Plug 'preservim/nerdtree', { 'tag': '7.1.2' }
+Plug 'jlanzarotta/bufexplorer', { 'commit': '20f0440' }
+Plug 'github/copilot.vim'
+call plug#end()
+
+" 自动安装插件
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+]])
 
 -- Coc配置
 vim.g.coc_global_extensions = {
