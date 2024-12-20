@@ -110,7 +110,7 @@ endif
 " 插件管理
 call plug#begin('~/.config/nvim/plugged')
 "Plug 'hardcoreplayers/dashboard-nvim'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ervandew/supertab'
