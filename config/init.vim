@@ -113,15 +113,16 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 " Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'vim-autoformat/vim-autoformat'
+" Plug 'vim-autoformat/vim-autoformat'
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' } " ScrollView at leftside
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
 Plug 'WolfgangMehner/bash-support', { 'commit': '99c746c' } " Bash Support
 Plug 'preservim/nerdtree', { 'tag': '7.1.2' } " NerdTree
 Plug 'jlanzarotta/bufexplorer', { 'commit': '20f0440' } " File history
+Plug 'github/copilot'
 call plug#end()
 "
 "======================================
@@ -134,8 +135,12 @@ let g:coc_global_extensions = [
 	\ 'coc-marketplace',
 	\ 'coc-css',
 	\ 'coc-html',
+  \ 'coc-tsserver',
+  \ 'coc-python',
 	\ 'coc-json',
-	\ 'coc-yaml']
+	\ 'coc-yaml',
+  \ 'coc-prettier'
+]
 " 补全提示切换方向从上往下
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
