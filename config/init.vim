@@ -13,7 +13,7 @@
 " 文档编码
 set encoding=utf-8
 set termencoding=utf-8
-set fileencoding=utf-8
+" set fileencoding=utf-8
 
 " 使用竖线来更改 TAB 制表符锁进
 " set list lcs=tab:\┆\ 
