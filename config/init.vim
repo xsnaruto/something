@@ -40,22 +40,12 @@ set number			        " 顯示行號
 set norelativenumber		
 set cursorline			    " 高亮當前行
 
+set nobackup			      " 禁止创建备份文件
+set nowritebackup     " 禁止创建写入备份文件
+set noswapfile	        " 禁止创建交换文件
+
 " 保持编辑行的上下留出空余行数
 set scrolloff=7
-
-"======================================
-"      Backup/Swap File settings
-"======================================
-" set nobackup			      " 禁止创建备份文件
-" set nowritebackup     " 禁止创建写入备份文件
-" set noswapfile	        " 禁止创建交换文件
-
-" augroup AutoDeleteSwapOnWrite
-"   autocmd!
-  " 在执行保存命令后删除 swap 文件
-"   autocmd BufWritePost * if exists("v:swapname") | call delete(v:swapname) | let v:swapname = '' | endif
-" augroup END
-
 
 " 配色设置
 set background=dark
