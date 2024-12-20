@@ -103,29 +103,35 @@ keymap('n', 'th', ':-tabnext<CR>', opts)
 keymap('n', 'tl', ':+tabnext<CR>', opts)
 
 -- 插件管理
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-
--- 自动安装 packer
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
-        'git',
-        'clone',
-        '--depth',
-        '1',
-        'https://github.com/wbthomason/packer.nvim',
-        install_path
-    })
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
 
--- 创建一个自动命令组来确保在保存时自动同步
-vim.api.nvim_create_autocmd('BufWritePost', {
-    pattern = 'init.lua',
-    command = 'source <afile> | PackerSync'
-})
+local packer_bootstrap = ensure_packer()
+
+-- 延迟加载插件配置
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerCompile
+  augroup end
+]])
+
+-- 安全地加载 packer
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+    return
+end
 
 -- 插件安装
-require('packer').startup(function(use)
+packer.startup(function(use)
     use 'wbthomason/packer.nvim'
     -- use 'hardcoreplayers/dashboard-nvim'
     use 'vim-airline/vim-airline'
@@ -163,8 +169,8 @@ require('packer').startup(function(use)
     }
     use 'github/copilot.vim'
 
-    if PACKER_BOOTSTRAP then
-        require('packer').sync()
+    if packer_bootstrap then
+        packer.sync()
     end
 end)
 
