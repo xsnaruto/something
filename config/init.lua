@@ -162,9 +162,7 @@ require("lazy").setup({
         "coc-marketplace", "coc-sh", "coc-html", "coc-css", "coc-tsserver", "coc-pyright", "coc-lua", "coc-yaml", "coc-json", "coc-xml"
       }
 
-      vim.g.coc_settings = {
-        ["Lua.diagnostics.globals"] = {"vim"}
-      }
+      vim.fn['coc#config']('Lua.diagnostics.globals', {'vim'})
 
       -- 检查光标是否在行首或空白字符后
       function _G.check_backspace()
