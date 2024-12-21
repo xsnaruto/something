@@ -15,7 +15,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- 缩进设置
-vim.opt.autoindent = false
+vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -24,7 +24,7 @@ vim.opt.expandtab = true
 
 -- 显示设置
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 -- vim.opt.cursorline = true
 vim.opt.scrolloff = 7
 vim.opt.conceallevel = 0
