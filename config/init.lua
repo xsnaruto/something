@@ -1,4 +1,3 @@
-
 -- 编码设置
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -24,7 +23,7 @@ vim.opt.expandtab = true
 
 -- 显示设置
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 -- vim.opt.cursorline = true
 vim.opt.scrolloff = 7
 vim.opt.conceallevel = 0
@@ -61,7 +60,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- 键位映射
 -- local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = false }
 
 -- 设置leader键
 vim.g.mapleader = " "
@@ -123,6 +122,43 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- coc.nvim 的插件配置
   {
+    'vim-airline/vim-airline',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
+  -- {
+  --   'nvim-lualine/lualine.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' }
+  -- },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   build = ":TSUpdate"
+  -- },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     -- "rcarriga/nvim-notify",
+  --   }
+  -- },
+  {
     {
        "justinsgithub/oh-my-monokai.nvim",
        config = function()
@@ -145,13 +181,16 @@ require("lazy").setup({
           })
       end,
   },
-  -- 可选的扩展插件
   {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
       config = function()
           require("telescope").load_extension("fzf")
       end,
+  },
+  {
+      'stevearc/conform.nvim',
+      opts = {},
   },
   {
     "neoclide/coc.nvim",
