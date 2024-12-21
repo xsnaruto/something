@@ -1,4 +1,3 @@
--- 文件: init.lua
 
 -- 编码设置
 vim.opt.encoding = 'utf-8'
@@ -6,7 +5,7 @@ vim.opt.fileencoding = 'utf-8'
 
 -- 显示设置
 vim.opt.list = true
-vim.opt.listchars = { tab = '┆ ' }
+-- vim.opt.listchars = { tab = '┆ ' }
 vim.opt.syntax = 'on'
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
@@ -26,9 +25,15 @@ vim.opt.expandtab = true
 -- 显示设置
 vim.opt.number = true
 vim.opt.relativenumber = false
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 vim.opt.scrolloff = 7
 vim.opt.conceallevel = 0
+
+vim.keymap.set("n", "<leader>p", function()
+    vim.opt.paste = true
+    vim.cmd("normal! \"*p") -- 粘贴剪贴板内容
+    vim.opt.paste = false
+end, { desc = "Paste without autoindent" })
 
 -- 备份文件设置
 -- vim.opt.backup = false
@@ -47,14 +52,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- 配色设置
-vim.cmd([[
-    set t_Co=256
-    colorscheme molokai
-    let g:molokai_original = 1
-    let g:rehash256 = 1
-]])
+-- vim.cmd([[
+--     set t_Co=256
+--     colorscheme molokai
+--     let g:molokai_original = 1
+--     let g:rehash256 = 1
+-- ]])
 
 -- 键位映射
+-- local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- 设置leader键
@@ -102,6 +108,7 @@ vim.keymap.set('n', 'tl', ':+tabnext<CR>', opts)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
+    "rg",
     "git",
     "clone",
     "--filter=blob:none",
@@ -116,12 +123,49 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- coc.nvim 的插件配置
   {
+    {
+       "justinsgithub/oh-my-monokai.nvim",
+       config = function()
+         require("oh-my-monokai").setup({
+           transparent_background = true,
+           palette = "default", "ristretto", "spectrum"
+         })
+         vim.cmd("colorscheme oh-my-monokai")
+       end,
+    }
+  },
+  {
+      "nvim-telescope/telescope.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+          require("telescope").setup({
+              defaults = {
+                  -- 配置选项，例如映射、窗口外观等
+              },
+          })
+      end,
+  },
+  -- 可选的扩展插件
+  {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+          require("telescope").load_extension("fzf")
+      end,
+  },
+  {
     "neoclide/coc.nvim",
     branch = "release",
     config = function()
       -- coc.nvim 配置
       vim.g.coc_global_extensions = {
-        "coc-marketplace", "coc-sh", "coc-html", "coc-css", "coc-tsserver", "coc-python", "coc-yaml", "coc-json", "coc-xml"
+        "coc-marketplace", "coc-sh", "coc-html", "coc-css", "coc-tsserver", "coc-pyright", "coc-lua", "coc-yaml", "coc-json", "coc-xml"
+      }
+
+      Lua = {
+        diagnostics = {
+          globals = { "vim" }
+        }
       }
 
       -- 检查光标是否在行首或空白字符后
@@ -190,6 +234,7 @@ require("lazy").setup({
   },
 })
 
+                        --
 vim.opt.updatetime = 100
 
 -- SuperTab配置
