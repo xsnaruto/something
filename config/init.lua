@@ -317,6 +317,7 @@ require("lazy").setup({
         "coc-html",
         "coc-css",
         "coc-tsserver",
+        "coc-nginx",
         "coc-pyright",
         "coc-lua",
         "coc-yaml",
