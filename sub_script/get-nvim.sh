@@ -8,8 +8,8 @@ sudo apt install software-properties-common -y >>/dev/null 2>&1
 sudo add-apt-repository ppa:neovim-ppa/stable -y >>/dev/null 2>&1
 sudo apt update >>/dev/null 2>&1
 sudo apt install neovim -y >>/dev/null 2>&1
-sudo apt install fortunes -y >>/dev/null 2>&1
-sudo apt install cowsay -y >>/dev/null 2>&1
+# sudo apt install fortunes -y >>/dev/null 2>&1
+# sudo apt install cowsay -y >>/dev/null 2>&1
 # sudo apt remove -y neovim >>/dev/null 2>&1
 # sudo apt install -y snapd
 # sudo snap install nvim --classic
@@ -20,6 +20,8 @@ sudo npm install -g n >>/dev/null 2>&1
 n lts >>/dev/null 2>&1
 sudo npm install -g prettier >>/dev/null 2>&1
 sudo npm install -g @johnnymorganz/stylua-bin >>/dev/null 2>&1
+sudo npm install -g cowsay >>/dev/null 2>&1
+sudo npm install -g fortunes >>/dev/null 2>&1
 
 # Clean may exist junk file
 echo "Cleaning Old Neovim data"
