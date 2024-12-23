@@ -4,7 +4,7 @@ sleep 1s
 
 # 安装最新 NeoVim
 sudo apt install software-properties-common -y >>/dev/null 2>&1
-sudo add-apt-repository ppa:neovim-ppa/unstable -y >>/dev/null 2>&1
+sudo add-apt-repository ppa:neovim-ppa/stable -y >>/dev/null 2>&1
 sudo apt update && apt install neovim -y >>/dev/null 2>&1
 # sudo apt remove -y neovim >>/dev/null 2>&1
 # sudo apt install -y snapd
