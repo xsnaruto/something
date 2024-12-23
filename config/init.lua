@@ -54,7 +54,7 @@ vim.opt.swapfile = false
 
 -- 键位映射
 -- local keymap = vim.keymap.set
-local opts = { noremap = true, silent = false }
+local opts = { noremap = true, silent = true }
 
 -- 设置leader键
 vim.g.mapleader = " "
@@ -90,7 +90,7 @@ vim.keymap.set("v", "Y", '"+y', opts)
 vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>", { silent = true })
 
 -- 查找替换
-vim.keymap.set("n", "sg", ":%s//g<left><left>", opts)
+vim.keymap.set("n", "sg", ":%s//g<left><left>", { silent = false})
 
 -- 窗口管理
 vim.keymap.set("n", "<C-w>j", ":split<CR>", opts)                   
@@ -101,6 +101,9 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 
 -- 标签页管理
+vim.keymap.set("n", "<C-t>", ":tabnew<CR>", opts)                
+vim.keymap.set("n", "<C-n>", ":tabnext<CR>", opts)               
+vim.keymap.set("n", "<C-p>", ":tabprevious<CR>", opts)  
 -- vim.keymap.set("n", "tt", ":tabe<CR>", opts)
 -- vim.keymap.set("n", "th", ":-tabnext<CR>", opts)
 -- vim.keymap.set("n", "tl", ":+tabnext<CR>", opts)
