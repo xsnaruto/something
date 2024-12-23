@@ -18,7 +18,7 @@ sudo npm install -g @johnnymorganz/stylua-bin >>/dev/null 2>&1
 rm -rf ~/.config/nvim >>/dev/null 2>&1
 # rm -rf ~/.config/coc >>/dev/null 2>&1
 # Create neovim config path
-# mkdir ~/.config/nvim -p >>/dev/null 2>&1
+mkdir ~/.config/nvim -p >>/dev/null 2>&1
 # mkdir ~/.config/nvim/plugged >>/dev/null 2>&1
 
 # Install neovim plugin
