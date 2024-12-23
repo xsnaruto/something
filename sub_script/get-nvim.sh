@@ -3,12 +3,12 @@ echo "Start install neovim"
 sleep 1s
 
 # 安装最新 NeoVim
-# sudo apt install software-properties-common -y >>/dev/null 2>&1
-# sudo add-apt-repository ppa:neovim-ppa/stable -y >>/dev/null 2>&1
-# sudo apt update && apt install neovim -y >>/dev/null 2>&1
-sudo apt remove -y neovim >>/dev/null 2>&1
-sudo apt install -y snapd
-sudo snap install nvim --classic
+sudo apt install software-properties-common -y >>/dev/null 2>&1
+sudo add-apt-repository ppa:neovim-ppa/unstable -y >>/dev/null 2>&1
+sudo apt update && apt install neovim -y >>/dev/null 2>&1
+# sudo apt remove -y neovim >>/dev/null 2>&1
+# sudo apt install -y snapd
+# sudo snap install nvim --classic
 
 # 更新 node.js 和 npm
 sudo npm install -g n && n lts >>/dev/null 2>&1
