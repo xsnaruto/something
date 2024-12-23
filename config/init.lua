@@ -36,20 +36,20 @@ vim.keymap.set("n", "<leader>p", function()
 end, { desc = "Paste without autoindent" })
 
 -- 备份文件设置
--- vim.opt.backup = false
--- vim.opt.writebackup = false
--- vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
 
--- 自动删除swap文件
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*",
-  callback = function()
-    if vim.v.swapname ~= "" then
-      os.remove(vim.v.swapname)
-      vim.v.swapname = ""
-    end
-  end,
-})
+-- -- 自动删除swap文件
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = "*",
+--   callback = function()
+--     if vim.v.swapname ~= "" then
+--       os.remove(vim.v.swapname)
+--       vim.v.swapname = ""
+--     end
+--   end,
+-- })
 
 -- 键位映射
 -- local keymap = vim.keymap.set
@@ -121,6 +121,9 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   -- {
+  --   "adelarsq/neoline.vim",
+  -- },
+  -- {
   --   'nvim-lualine/lualine.nvim',
   --   dependencies = { 'nvim-tree/nvim-web-devicons' }
   -- },
@@ -190,21 +193,21 @@ require("lazy").setup({
       require("conform").setup({
         -- 为不同文件类型设置格式化工具
         formatters_by_ft = {
-          html = { "prettierd" },
-          css = { "prettierd" },
-          javascript = { "prettierd" },
-          typescript = { "prettierd" },
-          markdown = { "prettierd" },
-          json = { "prettierd" },
-          yaml = { "prettierd" },
+          html = { "prettier" },
+          css = { "prettier" },
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          markdown = { "prettier" },
+          json = { "prettier" },
+          yaml = { "prettier" },
           xml = { "xmllint" },
           lua = { "stylua" },
           ruby = { "rubocop" },
 
-          gitignore = { "prettierd" },
-          editorconfig = { "prettierd" },
+          gitignore = { "prettier" },
+          editorconfig = { "prettier" },
 
-          nginx = {"nginxfmt"},
+          nginx = { "nginxfmt" },
           sh = { "shfmt" },
           bash = { "shfmt" },
           python = { "black", "isort" },
@@ -219,7 +222,7 @@ require("lazy").setup({
           kotlin = { "ktlint" },
         },
         formatters = {
-          prettierd = {
+          prettier = {
             prepend_args = {
               "--indent-type",
               "Spaces",
@@ -271,12 +274,7 @@ require("lazy").setup({
       }
 
       vim.fn["coc#config"]("Lua.diagnostics.globals", { "vim" })
-
-      -- 检查光标是否在行首或空白字符后
-      function _G.check_backspace()
-        local col = vim.fn.col(".") - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
-      end
+      vim.fn["coc#config"]("suggest.noselect", { true })
 
       -- 设置快捷键
       vim.api.nvim_set_keymap(
@@ -295,45 +293,21 @@ require("lazy").setup({
 
       vim.api.nvim_set_keymap(
         "i", -- 插入模式
-        "<CR>",
+        "<C-space>",
         'coc#pum#visible() ? coc#pum#confirm() : "<CR>"',
         { silent = true, noremap = true, expr = true, replace_keycodes = false }
       )
 
-      vim.api.nvim_set_keymap(
-        "n", -- 普通模式
-        "[g",
-        "<Plug>(coc-diagnostic-prev)",
-        { silent = true }
-      )
+      -- Use `[g` and `]g` to navigate diagnostics
+      vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
+      vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 
-      vim.api.nvim_set_keymap(
-        "n", -- 普通模式
-        "]g",
-        "<Plug>(coc-diagnostic-next)",
-        { silent = true }
-      )
+      -- GoTo code navigation
+      vim.keymap.set("n", "gd", "<Plug>(coc-definition)", { silent = true })
+      vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
+      vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+      vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
 
-      vim.api.nvim_set_keymap(
-        "n", -- 普通模式
-        "gd",
-        "<Plug>(coc-definition)",
-        { silent = true }
-      )
-
-      vim.api.nvim_set_keymap(
-        "n", -- 普通模式
-        "gy",
-        "<Plug>(coc-type-definition)",
-        { silent = true }
-      )
-
-      vim.api.nvim_set_keymap(
-        "n", -- 普通模式
-        "gr",
-        "<Plug>(coc-references)",
-        { silent = true }
-      )
     end,
   },
 })
@@ -354,5 +328,5 @@ vim.opt.updatetime = 100
 -- IndentLine配置
 -- vim.g.indentLine_defaultGroup = 'SpecialKey'
 
--- Prettier配置
+-- prettier配置
 -- vim.keymap.set("n", "<C-F>", ":Autoformat", opts)
