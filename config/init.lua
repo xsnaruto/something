@@ -93,12 +93,12 @@ vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>", { silent = true })
 vim.keymap.set("n", "sg", ":%s//g<left><left>", opts)
 
 -- 窗口管理
-vim.keymap.set("n", "Wl", ":vsplit<CR>", opts)                   
-vim.keymap.set("n", "Wk", ":vsplit<CR>", opts)                   
-vim.keymap.set("n", "wh", "<C-w>h", opts)                        
-vim.keymap.set("n", "wl", "<C-w>l", opts)                        
-vim.keymap.set("n", "wj", "<C-w>j", opts)                        
-vim.keymap.set("n", "wk", "<C-w>k", opts)
+vim.keymap.set("n", "<C-w>j", ":split<CR>", opts)                   
+vim.keymap.set("n", "<C-w>l", ":vsplit<CR>", opts)                   
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)                        
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)                        
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)                        
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 
 -- 标签页管理
 -- vim.keymap.set("n", "tt", ":tabe<CR>", opts)
