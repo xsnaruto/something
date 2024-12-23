@@ -6,7 +6,7 @@ sleep 1s
 # sudo apt install software-properties-common -y >>/dev/null 2>&1
 # sudo add-apt-repository ppa:neovim-ppa/stable -y >>/dev/null 2>&1
 # sudo apt update && apt install neovim -y >>/dev/null 2>&1
-sudo apt remove neovim >>/dev/null 2>&1
+sudo apt remove -y neovim >>/dev/null 2>&1
 sudo apt install -y snapd
 sudo snap install nvim --classic
 
