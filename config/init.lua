@@ -1,6 +1,3 @@
-local home = os.getenv("HOME")
-vim.env.HOME = home
-
 -- 编码设置
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
@@ -190,6 +187,7 @@ require("lazy").setup({
   },
   {
     "stevearc/conform.nvim",
+    branch = "nvim-0.9",
     config = function()
       -- Conform 配置
       require("conform").setup({
