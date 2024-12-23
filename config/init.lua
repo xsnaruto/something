@@ -71,9 +71,11 @@ vim.keymap.set("n", "lg", ":Telescope live_grep<CR>", opts)
 -- 重新加载配置
 vim.keymap.set("n", "<C-r>", ":source %<CR>", opts)
 
--- 快速滚动
-vim.keymap.set("n", "K", "5k", opts)
-vim.keymap.set("n", "J", "5j", opts)
+-- 快速滚动                                              
+vim.keymap.set("", "K", "5k", opts)                              
+vim.keymap.set("", "J", "5j", opts)                              
+vim.keymap.set("", "H", "b", opts)                               
+vim.keymap.set("", "L", "w", opts) 
 
 -- 保存和退出
 vim.keymap.set("n", "W", ":w<CR>", { silent = true })
