@@ -26,7 +26,7 @@ vim.opt.expandtab = true
 vim.opt.fillchars:append("eob: ")
 vim.opt.number = true
 vim.opt.relativenumber = false
--- vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.scrolloff = 7
 vim.opt.conceallevel = 0
 
@@ -72,11 +72,11 @@ vim.keymap.set("n", "lg", ":Telescope live_grep<CR>", opts)
 -- 重新加载配置
 vim.keymap.set("n", "<C-r>", ":source %<CR>", opts)
 
--- 快速滚动                                              
-vim.keymap.set("", "K", "5k", opts)                              
-vim.keymap.set("", "J", "5j", opts)                              
-vim.keymap.set("", "H", "b", opts)                               
-vim.keymap.set("", "L", "w", opts) 
+-- 快速滚动
+vim.keymap.set("", "K", "5k", opts)
+vim.keymap.set("", "J", "5j", opts)
+vim.keymap.set("", "H", "b", opts)
+vim.keymap.set("", "L", "w", opts)
 
 -- 保存和退出
 vim.keymap.set("n", "W", ":w<CR>", { silent = true })
@@ -90,21 +90,21 @@ vim.keymap.set("v", "Y", '"+y', opts)
 vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>", { silent = true })
 
 -- 查找替换
-vim.keymap.set("n", "sg", ":%s//g<left><left>", { silent = false})
+vim.keymap.set("n", "sg", ":%s//g<left><left>", { silent = false })
 
 -- 窗口管理
-vim.keymap.set("n", "<C-w>j", ":split<CR>", opts)                   
-vim.keymap.set("n", "<C-w>l", ":vsplit<CR>", opts)                   
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)                        
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)                        
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)                        
+vim.keymap.set("n", "<C-w>j", ":split<CR>", opts)
+vim.keymap.set("n", "<C-w>l", ":vsplit<CR>", opts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 
 -- 标签页管理
-vim.keymap.set("n", "<C-t>", ":tabnew<CR>", opts)                
-vim.keymap.set("n", "<C-n>", ":tabnext<CR>", opts)               
-vim.keymap.set("n", "<C-p>", ":tabprevious<CR>", opts)  
-vim.keymap.set("n", "<C-w>", ":tabclose<CR>", opts)  
+vim.keymap.set("n", "<C-t>", ":tabnew<CR>", opts)
+vim.keymap.set("n", "<C-n>", ":tabnext<CR>", opts)
+vim.keymap.set("n", "<C-p>", ":tabprevious<CR>", opts)
+vim.keymap.set("n", "<C-w>", ":tabclose<CR>", opts)
 -- vim.keymap.set("n", "tt", ":tabe<CR>", opts)
 -- vim.keymap.set("n", "th", ":-tabnext<CR>", opts)
 -- vim.keymap.set("n", "tl", ":+tabnext<CR>", opts)
@@ -130,6 +130,8 @@ require("lazy").setup({
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      bigfile = { enabled = true },
+      -- indent = { enabled = true },
       dashboard = {
         -- your dashboard configuration comes here
         -- or leave it empty to use the default settings
@@ -140,7 +142,7 @@ require("lazy").setup({
             return {
               { "[", hl = "special" },
               { item.key, hl = "key" },
-              { "]", hl = "special" }
+              { "]", hl = "special" },
             }
           end,
         },
@@ -150,7 +152,7 @@ require("lazy").setup({
             cmd = "fortune -s | cowsay",
             hl = "header",
             padding = 1,
-            indent = 8
+            indent = 8,
           },
           { title = "MRU", padding = 1 },
           { section = "recent_files", limit = 8, padding = 1 },
@@ -356,7 +358,6 @@ require("lazy").setup({
       vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
       vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
       vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
-
     end,
   },
 })
