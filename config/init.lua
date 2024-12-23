@@ -147,7 +147,7 @@ require("lazy").setup({
         sections = {
           {
             section = "terminal",
-            cmd = "fortune | cowsay",
+            cmd = "fortune -s | cowsay",
             hl = "header",
             padding = 1,
             indent = 8
