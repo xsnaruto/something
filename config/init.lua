@@ -252,15 +252,6 @@ require("lazy").setup({
   -- {
   --     "vim-autoformat/vim-autoformat"
   -- },
-{
-  "williamboman/mason.nvim",
-  config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup({
-      ensure_installed = { "stylua", "prettier" },
-    })
-  end
-},
   {
     "neoclide/coc.nvim",
     branch = "release",
