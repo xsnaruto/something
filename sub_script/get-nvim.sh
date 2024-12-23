@@ -8,7 +8,7 @@ sudo apt install software-properties-common -y >>/dev/null 2>&1
 sudo add-apt-repository ppa:neovim-ppa/stable -y >>/dev/null 2>&1
 sudo apt update >>/dev/null 2>&1
 sudo apt install neovim -y >>/dev/null 2>&1
-sudo apt install fortune -y >>/dev/null 2>&1
+sudo apt install fortunes -y >>/dev/null 2>&1
 sudo apt install cowsay -y >>/dev/null 2>&1
 # sudo apt remove -y neovim >>/dev/null 2>&1
 # sudo apt install -y snapd
