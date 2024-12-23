@@ -102,7 +102,6 @@ vim.keymap.set("n", "tl", ":+tabnext<CR>", opts)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "rg",
     "git",
     "clone",
     "--filter=blob:none",
