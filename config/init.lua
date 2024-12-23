@@ -116,6 +116,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- coc.nvim 的插件配置
   {
+    'goolord/alpha-nvim',
+    dependencies = { 'echasnovski/mini.icons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  },
+  {
     "vim-airline/vim-airline",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
