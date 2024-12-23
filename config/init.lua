@@ -84,7 +84,7 @@ vim.keymap.set("n", "FQ", ":q!<CR>", { silent = true })
 vim.keymap.set("v", "Y", '"+y', opts)
 
 -- 取消搜索高亮
-vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>", opts)
+vim.keymap.set("n", "<leader><CR>", ":nohlsearch<CR>", { silent = true })
 
 -- 查找替换
 vim.keymap.set("n", "sg", ":%s//g<left><left>", opts)
@@ -197,24 +197,24 @@ require("lazy").setup({
           markdown = { "prettierd" },
           json = { "prettierd" },
           yaml = { "prettierd" },
+          xml = { "xmllint" },
           lua = { "stylua" },
+          ruby = { "rubocop" },
+
           gitignore = { "prettierd" },
           editorconfig = { "prettierd" },
 
-          xml = { "xmllint" },
+          nginx = {"nginxfmt"},
           sh = { "shfmt" },
           bash = { "shfmt" },
-
           python = { "black", "isort" },
           go = { "gofmt" },
-
           php = { "phpcbf" },
           java = { "clang_format" },
           c = { "clang_format" },
           cpp = { "clang_format" },
           objc = { "clang_format" },
           rust = { "rustfmt" },
-          ruby = { "rubocop" },
           swift = { "swiftformat" },
           kotlin = { "ktlint" },
         },
@@ -227,23 +227,7 @@ require("lazy").setup({
               "2",
             },
           },
-          black = {
-            prepend_args = {
-              "--indent-type",
-              "Spaces",
-              "--indent-width",
-              "2",
-            },
-          },
           stylua = {
-            prepend_args = {
-              "--indent-type",
-              "Spaces",
-              "--indent-width",
-              "2",
-            },
-          },
-          gofmt = {
             prepend_args = {
               "--indent-type",
               "Spaces",
@@ -261,6 +245,9 @@ require("lazy").setup({
     end,
   },
   -- {
+  --     "github/copilot.vim"
+  -- },
+  -- {
   --     "vim-autoformat/vim-autoformat"
   -- },
   {
@@ -272,7 +259,6 @@ require("lazy").setup({
         "coc-marketplace",
         "coc-explorer",
         "coc-git",
-        "coc-prettier",
         "coc-sh",
         "coc-html",
         "coc-css",
