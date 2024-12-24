@@ -107,7 +107,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- 配置 lazy.nvim
 require("lazy").setup({
-  -- coc.nvim 的插件配置
   {
     "folke/snacks.nvim",
     ---@type snacks.Config
@@ -291,8 +290,16 @@ require("lazy").setup({
   --     "vim-autoformat/vim-autoformat"
   -- },
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  },
+  {
     "neoclide/coc.nvim",
     branch = "release",
+    event = "VeryLazy",
     config = function()
       -- coc.nvim 配置
       vim.g.coc_global_extensions = {
@@ -313,31 +320,60 @@ require("lazy").setup({
       vim.fn["coc#config"]("Lua.diagnostics.globals", { "vim" })
       vim.fn["coc#config"]("suggest.noselect", { true })
 
-      -- 设置快捷键
-      vim.api.nvim_set_keymap(
-        "i", -- 插入模式
+      -- 启用预览窗口
+      vim.cmd([[
+        set updatetime=300
+        set pumheight=20
+        
+        " 总是显示预览窗口
+        set previewwindow
+        
+        " 配置弹出窗口
+        call coc#config('suggest', {
+              \ 'enablePreview': v:true,
+              \ 'enablePreselect': v:false,
+              \ 'noselect': v:true,
+              \ 'floatConfig': {
+              \   'border': v:true,
+              \   'rounded': v:true
+              \ }
+              \})
+      ]])
+
+      -- Helper function to check backspace
+      vim.api.nvim_exec(
+        [[
+        function! CheckBackspace() abort
+          let col = col('.') - 1
+          return !col || getline('.')[col - 1]  =~# '\s'
+        endfunction
+      ]],
+        false
+      )
+
+      -- Tab: 如果补全菜单可见就选择当前项或切换到下一项，否则触发补全
+      vim.keymap.set(
+        "i",
         "<TAB>",
-        'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_backspace() ? "<TAB>" : coc#refresh()',
+        [[coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()]],
         { silent = true, noremap = true, expr = true, replace_keycodes = false }
       )
 
-      vim.api.nvim_set_keymap(
-        "i", -- 插入模式
+      -- Shift-Tab: 在补全菜单中向上切换
+      vim.keymap.set(
+        "i",
         "<S-TAB>",
-        'coc#pum#visible() ? coc#pum#prev(1) : "<C-h>"',
+        [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
         { silent = true, noremap = true, expr = true, replace_keycodes = false }
       )
 
-      vim.api.nvim_set_keymap(
-        "i", -- 插入模式
-        "<C-space>",
-        'coc#pum#visible() ? coc#pum#confirm() : "<CR>"',
+      -- Space: 如果补全菜单可见就确认选择，否则输入空格
+      vim.keymap.set(
+        "i",
+        "<space>",
+        [[coc#pum#visible()  ?  coc#pum#confirm()  .  "\<space>"  :  "\<space>"]],
         { silent = true, noremap = true, expr = true, replace_keycodes = false }
       )
-
-      -- Use `[g` and `]g` to navigate diagnostics
-      vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
-      vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 
       -- GoTo code navigation
       vim.keymap.set("n", "gd", "<Plug>(coc-definition)", { silent = true })
