@@ -1,3 +1,11 @@
+-- 快速打开配置文件
+local config_path = vim.fn.stdpath("config")
+vim.keymap.set("n", "init", string.format(":e %s/init.lua<CR>", config_path), opts)
+
+-- 重新加载配置文件
+vim.keymap.set("n", "<C-r>", ":source %<CR>", opts)
+
+-- 偏好设置
 -- 编码设置
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
@@ -8,7 +16,6 @@ vim.opt.listchars = { tab = "┆ " }
 vim.opt.syntax = "on"
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
--- 使用 Hack 字体设置 Neovim
 
 -- 搜索设置
 vim.opt.ignorecase = true
@@ -43,13 +50,6 @@ local opts = { noremap = true, silent = true }
 
 -- 设置leader键
 vim.g.mapleader = " "
-
--- 快速打开配置文件
-local config_path = vim.fn.stdpath("config")
-vim.keymap.set("n", "init", string.format(":e %s/init.lua<CR>", config_path), opts)
-
--- 重新加载配置文件
-vim.keymap.set("n", "<C-r>", ":source %<CR>", opts)
 
 -- 设置文件类型
 vim.keymap.set("n", "ft", ":set filetype=", opts)
@@ -109,6 +109,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "folke/snacks.nvim",
+    event = "VeryLazy",
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
@@ -150,6 +151,7 @@ require("lazy").setup({
   {
     "vim-airline/vim-airline",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "BufRead",
   },
   -- {
   --   "adelarsq/neoline.vim",
@@ -161,6 +163,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = "VeryLazy",
   },
   -- {
   --     "nvim-neo-tree/neo-tree.nvim",
@@ -188,19 +191,18 @@ require("lazy").setup({
   --   },
   -- },
   {
-    {
-      "justinsgithub/oh-my-monokai.nvim",
-      lazy = false,
-      config = function()
-        require("oh-my-monokai").setup({
-          transparent_background = true,
-          palette = "default",
-          "ristretto",
-          "spectrum",
-        })
-        vim.cmd("colorscheme oh-my-monokai")
-      end,
-    },
+    "justinsgithub/oh-my-monokai.nvim",
+    event = "VeryLazy",
+    -- lazy = false,
+    config = function()
+      require("oh-my-monokai").setup({
+        transparent_background = true,
+        palette = "default",
+        "ristretto",
+        "spectrum",
+      })
+      vim.cmd("colorscheme oh-my-monokai")
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -223,7 +225,7 @@ require("lazy").setup({
   {
     "stevearc/conform.nvim",
     branch = "nvim-0.9",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       -- Conform 配置
       require("conform").setup({
