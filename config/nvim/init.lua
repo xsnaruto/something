@@ -31,10 +31,10 @@ vim.opt.scrolloff = 7
 vim.opt.conceallevel = 0
 
 -- 备份设置
-vim.opt.undofile = true
+vim.opt.undofile = false
 vim.o.undodir = vim.fn.expand("~/.config/nvim/undodir")
-vim.opt.backup = true
-vim.opt.writebackup = true
+vim.opt.backup = false
+vim.opt.writebackup = false
 vim.opt.swapfile = false
 
 -- 键位映射
