@@ -37,7 +37,6 @@ vim.opt.backup = true
 vim.opt.writebackup = true
 vim.opt.swapfile = false
 
-
 -- 键位映射
 -- local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -192,6 +191,7 @@ require("lazy").setup({
   {
     {
       "justinsgithub/oh-my-monokai.nvim",
+      lazy = false,
       config = function()
         require("oh-my-monokai").setup({
           transparent_background = true,
@@ -224,7 +224,7 @@ require("lazy").setup({
   {
     "stevearc/conform.nvim",
     branch = "nvim-0.9",
-    lazy = true,
+    lazy = false,
     config = function()
       -- Conform 配置
       require("conform").setup({
