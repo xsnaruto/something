@@ -151,7 +151,7 @@ require("lazy").setup({
   },
   {
     "folke/which-key.nvim",
-    event = "VimEnter", -- Sets the loading event to 'VimEnter'
+    event = "User IceLoad", -- Sets the loading event to 'VimEnter'
     opts = {
       icons = {
         -- set icon mappings to true if you have a Nerd Font
@@ -206,7 +206,7 @@ require("lazy").setup({
     "vim-airline/vim-airline",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      event = "VeryLazy",
+      event = "User IceLoad",
     },
     event = "BufRead",
   },
@@ -220,7 +220,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = "VeryLazy",
+    event = "User IceLoad",
   },
   {
     "tpope/vim-sleuth",
@@ -229,7 +229,7 @@ require("lazy").setup({
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    event = "User IceLoad",
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
@@ -246,6 +246,14 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+  },
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("diffview").setup()
+    end,
   },
   -- {
   --   "folke/flash.nvim",
@@ -300,7 +308,7 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("telescope").setup({
         defaults = {},
@@ -309,7 +317,7 @@ require("lazy").setup({
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    lazy = true,
+    event = "VeryLazy",
     build = "make",
     config = function()
       require("telescope").load_extension("fzf")
@@ -318,7 +326,7 @@ require("lazy").setup({
   {
     "stevearc/conform.nvim",
     branch = "nvim-0.9",
-    event = "VeryLazy",
+    event = "User IceLoad",
     config = function()
       -- Conform 配置
       require("conform").setup({
@@ -394,7 +402,7 @@ require("lazy").setup({
   {
     "neoclide/coc.nvim",
     branch = "release",
-    event = "VeryLazy",
+    event = "InsertEnter",
     config = function()
       -- coc.nvim 配置
       vim.g.coc_global_extensions = {
@@ -475,6 +483,24 @@ require("lazy").setup({
       vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
     end,
   },
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    local function _trigger()
+      vim.api.nvim_exec_autocmds("User", { pattern = "IceLoad" })
+    end
+
+    if vim.bo.filetype == "snacks_dashboard" then
+      vim.api.nvim_create_autocmd("BufRead", {
+        once = true,
+        callback = _trigger,
+      })
+    else
+      _trigger()
+    end
+  end,
 })
 
 --
