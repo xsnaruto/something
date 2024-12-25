@@ -3,7 +3,7 @@ local config_path = vim.fn.stdpath("config")
 vim.keymap.set("n", "init", string.format(":e %s/init.lua<CR>", config_path), opts)
 
 -- 重新加载配置文件
-vim.keymap.set("n", "<C-r>", ":source %<CR>", opts)
+vim.keymap.set("n", "<C-r>", ":source %<CR>", { silent = true })
 
 -- 偏好设置
 -- 编码设置
@@ -11,8 +11,9 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 -- 显示设置
-vim.opt.list = false
-vim.opt.listchars = { tab = "┆ " }
+vim.opt.list = true
+-- vim.opt.listchars = { tab = "┆ " }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.syntax = "on"
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
@@ -34,7 +35,7 @@ vim.opt.fillchars:append("eob: ")
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.cursorline = false
-vim.opt.scrolloff = 7
+vim.opt.scrolloff = 10
 vim.opt.conceallevel = 0
 
 -- 备份设置
@@ -113,7 +114,7 @@ require("lazy").setup({
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      -- indent = { enabled = true },
+      indent = { enabled = true },
       dashboard = {
         -- your dashboard configuration comes here
         -- or leave it empty to use the default settings
@@ -149,8 +150,64 @@ require("lazy").setup({
     },
   },
   {
+    "folke/which-key.nvim",
+    event = "VimEnter", -- Sets the loading event to 'VimEnter'
+    opts = {
+      icons = {
+        -- set icon mappings to true if you have a Nerd Font
+        mappings = vim.g.have_nerd_font,
+        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
+        -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
+        keys = vim.g.have_nerd_font and {} or {
+          Up = "<Up> ",
+          Down = "<Down> ",
+          Left = "<Left> ",
+          Right = "<Right> ",
+          C = "<C-…> ",
+          M = "<M-…> ",
+          D = "<D-…> ",
+          S = "<S-…> ",
+          CR = "<CR> ",
+          Esc = "<Esc> ",
+          ScrollWheelDown = "<ScrollWheelDown> ",
+          ScrollWheelUp = "<ScrollWheelUp> ",
+          NL = "<NL> ",
+          BS = "<BS> ",
+          Space = "<Space> ",
+          Tab = "<Tab> ",
+          F1 = "<F1>",
+          F2 = "<F2>",
+          F3 = "<F3>",
+          F4 = "<F4>",
+          F5 = "<F5>",
+          F6 = "<F6>",
+          F7 = "<F7>",
+          F8 = "<F8>",
+          F9 = "<F9>",
+          F10 = "<F10>",
+          F11 = "<F11>",
+          F12 = "<F12>",
+        },
+      },
+
+      -- Document existing key chains
+      spec = {
+        { "<leader>c", group = "[C]ode", mode = { "n", "x" } },
+        { "<leader>d", group = "[D]ocument" },
+        { "<leader>r", group = "[R]ename" },
+        { "<leader>s", group = "[S]earch" },
+        { "<leader>w", group = "[W]orkspace" },
+        { "<leader>t", group = "[T]oggle" },
+        { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+      },
+    },
+  },
+  {
     "vim-airline/vim-airline",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      event = "VeryLazy",
+    },
     event = "BufRead",
   },
   -- {
@@ -165,20 +222,55 @@ require("lazy").setup({
     build = ":TSUpdate",
     event = "VeryLazy",
   },
+  {
+    "tpope/vim-sleuth",
+    event = "BufRead",
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+  },
   -- {
-  --     "nvim-neo-tree/neo-tree.nvim",
-  --     branch = "v3.x",
-  --     dependencies = {
-  --         "nvim-lua/plenary.nvim",
-  --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-  --         "MunifTanjim/nui.nvim"
-  --         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-  --     }
+  --   "folke/flash.nvim",
+  --   event = "VeryLazy",
+  --   ---@type Flash.Config
+  --   opts = {},
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+  --     { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+  --     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+  --     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+  --     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+  --   },
   -- },
   -- {
   --   "folke/noice.nvim",
   --   event = "VeryLazy",
   --   opts = {
+  --     presets = {
+  --       bottom_search = true, -- use a classic bottom cmdline for search
+  --       -- command_palette = true, -- position the cmdline and popupmenu together
+  --       -- long_message_to_split = true, -- long messages will be sent to a split
+  --       -- inc_rename = false, -- enables an input dialog for inc-rename.nvim
+  --       -- lsp_doc_border = false, -- add a border to hover docs and signature help
+  --     },
   --     -- add any options here
   --   },
   --   dependencies = {
@@ -280,8 +372,8 @@ require("lazy").setup({
       })
 
       -- 添加快捷键手动触发格式化
-      vim.keymap.set("n", "<C-F>", function()
-        require("conform").format({ async = true }) -- 异步格式化
+      vim.keymap.set("n", "<leader>f", function()
+        require("conform").format({ async = true }) --异步格式化
       end, { desc = "Format current buffer with Conform" })
     end,
   },
@@ -306,8 +398,6 @@ require("lazy").setup({
       -- coc.nvim 配置
       vim.g.coc_global_extensions = {
         "coc-marketplace",
-        "coc-explorer",
-        "coc-git",
         "coc-sh",
         "coc-html",
         "coc-css",
