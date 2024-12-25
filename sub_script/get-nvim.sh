@@ -11,11 +11,22 @@ sudo apt install neovim -y >>/dev/null 2>&1
 sudo apt install fortunes -y >>/dev/null 2>&1
 sudo apt install cowsay -y >>/dev/null 2>&1
 
-if [[ ":$PATH:" != *":/usr/games:"* || ":$PATH:" != *":/usr/local/games:"* ]]; then
-  export PATH="$PATH:/usr/games:/usr/local/games"
-  echo "已添加 /usr/games 和 /usr/local/games 到 PATH 中。"
+# 检测当前使用的 Shell
+if [[ $SHELL == *"bash"* ]]; then
+  CONFIG_FILE=~/.bashrc
+elif [[ $SHELL == *"zsh"* ]]; then
+  CONFIG_FILE=~/.zshrc
 else
-  echo "/usr/games 和 /usr/local/games 已在 PATH 中。"
+  echo "未检测到 bash 或 zsh，请手动确认您的 Shell 类型。"
+  exit 1
+fi
+
+# 检查配置文件中是否已包含路径
+if ! grep -qE '(/usr/games|/usr/local/games)' "$CONFIG_FILE"; then
+  echo "export PATH=\"\$PATH:/usr/games:/usr/local/games\"" >> "$CONFIG_FILE"
+  echo "已将 /usr/games 和 /usr/local/games 永久添加到 $CONFIG_FILE 中。请运行 'source $CONFIG_FILE' 或重新登录以生效。"
+else
+  echo "/usr/games 和 /usr/local/games 已经存在于 $CONFIG_FILE 中，无需重复添加。"
 fi
 
 # sudo apt remove -y neovim >>/dev/null 2>&1
