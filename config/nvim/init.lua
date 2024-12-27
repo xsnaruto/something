@@ -110,11 +110,16 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "folke/snacks.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      indent = { enabled = true },
+      -- indent = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      scroll = { enabled = true },
+      lazygit = { enabled = true },
       dashboard = {
         -- your dashboard configuration comes here
         -- or leave it empty to use the default settings
@@ -149,6 +154,90 @@ require("lazy").setup({
       },
     },
   },
+  {
+    "mbbill/undotree",
+    event = "User IceLlad",
+    cmd = "UndotreeToggle", -- 按需加载，使用 :UndotreeToggle 命令时加载插件
+    keys = { { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undotree" } }, -- 快捷键绑定
+    config = function()
+      -- 自定义配置（可选）
+      vim.g.undotree_WindowLayout = 3 -- 默认窗口布局：左侧显示树形图
+      vim.g.undotree_SetFocusWhenToggle = 1 -- 打开时自动聚焦到 undotree 窗口
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "User IceLlad",
+    opts = {
+      indent = {
+        highlight = {
+          "RainbowRed",
+          "RainbowYellow",
+          "RainbowBlue",
+          "RainbowOrange",
+          "RainbowGreen",
+          "RainbowViolet",
+          "RainbowCyan",
+        },
+      },
+    },
+    config = function()
+      -- 定义高亮组
+      local hooks = require("ibl.hooks")
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      -- 载入配置
+      require("ibl").setup({
+        indent = {
+          highlight = {
+            "RainbowRed",
+            "RainbowYellow",
+            "RainbowBlue",
+            "RainbowOrange",
+            "RainbowGreen",
+            "RainbowViolet",
+            "RainbowCyan",
+          },
+        },
+      })
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    event = "User IceLoad",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+  -- {
+  --   "kdheepak/lazygit.nvim",
+  --   lazy = true,
+  --   cmd = {
+  --     "LazyGit",
+  --     "LazyGitConfig",
+  --     "LazyGitCurrentFile",
+  --     "LazyGitFilter",
+  --     "LazyGitFilterCurrentFile",
+  --   },
+  --   -- optional for floating window border decoration
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   -- setting the keybinding for LazyGit with 'keys' is recommended in
+  --   -- order to load the plugin when the command is run for the first time
+  --   keys = {
+  --     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+  --   },
+  -- },
   {
     "folke/which-key.nvim",
     event = "User IceLoad", -- Sets the loading event to 'VimEnter'
@@ -249,7 +338,7 @@ require("lazy").setup({
   },
   {
     "sindrets/diffview.nvim",
-    event = "BufRead",
+    event = "User IceLoad",
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("diffview").setup()
@@ -402,7 +491,8 @@ require("lazy").setup({
   {
     "neoclide/coc.nvim",
     branch = "release",
-    event = "InsertEnter",
+    -- event = "InsertEnter",
+    event = "User IceLoad",
     config = function()
       -- coc.nvim 配置
       vim.g.coc_global_extensions = {
