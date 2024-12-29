@@ -22,7 +22,7 @@ rm ~/.zimrc >>/dev/null 2>&1
 rm -rf ~/.zim >>/dev/null 2>&1
 
 # Restore zim config
-wget -o .zimrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zimfw/.zimrc >>/dev/null 2>&1
+wget -O .zimrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zimfw/.zimrc >>/dev/null 2>&1
 
 echo "finished, type <enter> continue"
 read none
