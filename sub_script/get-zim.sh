@@ -11,13 +11,12 @@ sudo apt install zsh -y
 # Set zsh as default shell
 echo -e "/bin/zsh\n" | chsh >>/dev/null 2>&1
 
-# Install zimfw
-# echo "y\n" | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >>/dev/null 2>&1
-curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh >>/dev/null 2>&1
-
 # Clean old config data
 rm ~/.zshrc >>/dev/null 2>&1
 rm -rf ~/.oh-my-zsh >>/dev/null 2>&1
+
+# Install zimfw
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh >>/dev/null 2>&1
 
 rm ~/.zimrc >>/dev/null 2>&1
 rm -rf ~/.zim >>/dev/null 2>&1
