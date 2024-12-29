@@ -15,8 +15,8 @@ apt() {
 shell() {
 	clear
 	wget https://github.com/xsnaruto/something/raw/main/sub_script/get-zim.sh
-	bash get-zsh.sh
-	rm get-zsh.sh
+	bash get-zim.sh
+	rm get-zim.sh
 	sleep 1s
 	mainMenu
 }
