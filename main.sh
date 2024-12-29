@@ -12,9 +12,9 @@ apt() {
 	mainMenu
 }
 
-ohmyzsh() {
+shell() {
 	clear
-	wget https://github.com/xsnaruto/something/raw/main/sub_script/get-zsh.sh
+	wget https://github.com/xsnaruto/something/raw/main/sub_script/get-zim.sh
 	bash get-zsh.sh
 	rm get-zsh.sh
 	sleep 1s
@@ -326,7 +326,7 @@ mainMenu() {
 	clear
 	echo -e "\tPersonal env. setting script\t"
 	echo "==================core-env=================="
-	echo -e "1. \e[1;32menv\e[0m\t\t\t2. \e[1;32mohmyzsh\e[0m"
+	echo -e "1. \e[1;32menv\e[0m\t\t\t2. \e[1;32mshell\e[0m"
 	echo -e "3. \e[1;32mneovim\e[0m\t\t4. \e[1;32mother\e[0m"
 	echo "==================optn-env=================="
 	echo -e "5. \e[1;34mrclone\e[0m\t\t6. \e[1;34mnginx\e[0m"
@@ -341,8 +341,8 @@ mainMenu() {
 	"env")
 		apt
 		;;
-	"ohmyzsh")
-		ohmyzsh
+	"shell")
+		shell
 		;;
 	"neovim")
 		neovim
