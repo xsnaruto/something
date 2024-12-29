@@ -3,6 +3,7 @@ echo "Install zsh and plugin"
 sleep 1s
 
 # Clean may exist junk file
+rm ~/.zshrc >>/dev/null 2>&1
 rm -rf ~/.oh-my-zsh >>/dev/null 2>&1
 
 # Install & Update zsh
