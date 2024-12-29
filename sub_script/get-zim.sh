@@ -22,7 +22,7 @@ echo -e "/bin/zsh\n" | chsh >>/dev/null 2>&1
 curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh >>/dev/null 2>&1
 
 # Install zimfw
-wget -o ~/.zimrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zimfw/.zimrc >>/dev/null 2>&1
+wget -o .zimrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zimfw/.zimrc >>/dev/null 2>&1
 
 echo "finished, type <enter> continue"
 read none
