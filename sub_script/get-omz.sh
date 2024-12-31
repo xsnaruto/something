@@ -34,6 +34,7 @@ curl -sS https://starship.rs/install.sh | sh
 echo "" >>~/.zshrc
 echo "# Starship" >>~/.zshrc
 echo "eval \"\$(starship init zsh)\"" >>~/.zshrc
+wget -O ~/.config/starship.toml https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zsh/starship.toml
 
 echo "finished, type <enter> continue"
 read none
