@@ -3,7 +3,10 @@ echo "Install zsh and plugin"
 sleep 1s
 
 # Clean may exist junk file
+rm -f ~/.zshrc >>/dev/null 2>&1
 rm -rf ~/.oh-my-zsh >>/dev/null 2>&1
+rm -f ~/.zimrc >>/dev/null 2>&1
+rm -rf ~/.zim >>/dev/null 2>&1
 
 # Install & Update zsh
 sudo apt install zsh -y
