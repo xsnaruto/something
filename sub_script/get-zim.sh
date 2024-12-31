@@ -23,7 +23,7 @@ rm ~/.zimrc >>/dev/null 2>&1
 rm -rf ~/.zim >>/dev/null 2>&1
 
 # Restore zim config
-wget -O .zimrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zimfw/.zimrc >>/dev/null 2>&1
+wget -O .zimrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zsh/.zimrc >>/dev/null 2>&1
 
 # ZIM compinit check for Ubuntu
 # 检查系统是否为 Ubuntu

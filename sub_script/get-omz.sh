@@ -19,8 +19,11 @@ echo -e "/bin/zsh\n" | chsh >>/dev/null 2>&1
 # Install plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions >>/dev/null 2>&1
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting >>/dev/null 2>&1
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
 
-sed -i "s#plugins=(git)#plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)#g" ~/.zshrc >>/dev/null 2>&1
+# sed -i "s#plugins=(git)#plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)#g" ~/.zshrc >>/dev/null 2>&1
+wget -O ~/.zshrc https://raw.githubusercontent.com/xsnaruto/something/refs/heads/main/config/zsh/.zshrc
 
 # Clean junk & Install  Starship
 sh -c 'rm -rf "$(command -v 'starship')"' >>/dev/null 2>&1
