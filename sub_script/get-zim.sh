@@ -6,6 +6,7 @@ sleep 1s
 sh -c 'rm -rf "$(command -v 'starship')"' >>/dev/null 2>&1
 curl -sS https://starship.rs/install.sh | sh
 
+
 # Install/Update zsh
 sudo apt install zsh -y
 # Set zsh as default shell
@@ -48,6 +49,9 @@ if [[ "$(lsb_release -is)" == "Ubuntu" ]]; then
 else
     echo "此脚本仅适用于 Ubuntu 系统。"
 fi
+
+# Plug starship preset
+starship preset plain-text-symbols -o ~/.config/starship.toml
 
 echo "finished, type <enter> continue"
 read none
