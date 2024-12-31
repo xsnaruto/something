@@ -1,10 +1,3 @@
--- 快速打开配置文件
-local config_path = vim.fn.stdpath("config")
-vim.keymap.set("n", "init", string.format(":e %s/init.lua<CR>", config_path), opts)
-
--- 重新加载配置文件
-vim.keymap.set("n", "<C-r>", ":source %<CR>", { silent = true })
-
 -- 偏好设置
 -- 编码设置
 vim.opt.encoding = "utf-8"
@@ -380,20 +373,50 @@ require("lazy").setup({
   --     -- "rcarriga/nvim-notify",
   --   },
   -- },
+  -- {
+  --   "justinsgithub/oh-my-monokai.nvim",
+  --   event = "VeryLazy",
+  --   -- lazy = false,
+  --   config = function()
+  --     require("oh-my-monokai").setup({
+  --       transparent_background = true,
+  --       palette = "default",
+  --       "ristretto",
+  --       "spectrum",
+  --     })
+  --     vim.cmd("colorscheme oh-my-monokai")
+  --   end,
+  -- },
   {
-    "justinsgithub/oh-my-monokai.nvim",
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
     event = "VeryLazy",
-    -- lazy = false,
     config = function()
-      require("oh-my-monokai").setup({
-        transparent_background = true,
-        palette = "default",
-        "ristretto",
-        "spectrum",
-      })
-      vim.cmd("colorscheme oh-my-monokai")
+      -- 加载主题
+      vim.cmd("colorscheme onedark")
     end,
   },
+  -- {
+  --   "UtkarshVerma/molokai.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("molokai").setup({
+  --       -- 可选配置
+  --       transparent = false, -- 是否使用透明背景
+  --       italic_comments = true, -- 是否使用斜体注释
+  --       bold_keywords = true, -- 是否使用粗体关键字
+
+  --       -- 自定义特定语法高亮组的颜色
+  --       -- custom_highlights = {},
+
+  --       -- 终端颜色
+  --       terminal_colors = true, -- 是否设置终端颜色
+  --     })
+
+  --     -- 设置配色方案
+  --     vim.cmd([[colorscheme molokai]])
+  --   end,
+  -- },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -611,3 +634,5 @@ vim.opt.updatetime = 100
 
 -- prettier配置
 -- vim.keymap.set("n", "<C-F>", ":Autoformat", opts)
+
+-- vim.cmd("colorscheme onedark")
