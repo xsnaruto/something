@@ -149,7 +149,7 @@ require("lazy").setup({
   },
   {
     "mbbill/undotree",
-    event = "User IceLlad",
+    event = "User IceLoad",
     cmd = "UndotreeToggle", -- 按需加载，使用 :UndotreeToggle 命令时加载插件
     keys = { { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undotree" } }, -- 快捷键绑定
     config = function()
@@ -426,6 +426,10 @@ require("lazy").setup({
         defaults = {},
       })
     end,
+  },
+  {
+    "wakatime/vim-wakatime",
+    event = "User IceLoad",
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
