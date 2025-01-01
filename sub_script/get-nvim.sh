@@ -61,7 +61,7 @@ mkdir ~/.config/nvim -p >>/dev/null 2>&1
 # Neovim config restore
 echo "Getting Neovim Configuration"
 wget -O ~/.config/nvim/init.lua https://github.com/xsnaruto/something/raw/main/config/nvim/init.lua >>/dev/null 2>&1
-wget -O ~/.wakatime.cfg https://github.com/xsnaruto/something/raw/main/config/nvim/.wakatime.cfg >>/dev/null 2>&1
+wget -O ~/.wakatime.cfg https://gist.githubusercontent.com/xsnaruto/946c05aaef51ea5f62b00d17af80103e/raw/617c56ff1b4d95734508f638ead92dbeaabb042a/.wakatime.cfg >>/dev/null 2>&1
 
 # Load PlugIns
 echo "Finished, type <enter> continue"
